@@ -1,0 +1,971 @@
+/* 既存のPCSP共通横長画像のイメージスライダー対応 */
+@media (max-width: 640px) {
+  .shop-botanical .top_slider,
+  .shop-corporate .top_slider{
+    border-top: 7rem solid #fff;
+  }
+  .shop-rich .top_slider {
+    margin-top: 7rem;
+  }
+}
+
+/* NOTE: body.shop に設定されている min-width を利用しないデザイン対応ができるまで設定する */
+.mainvisual {
+  max-width: 100vw;
+}
+
+@media (min-width: 640px) and (max-width: 1400px) {
+  .mainvisual {
+    margin-right: auto !important;
+    margin-left: unset !important;
+  }
+}
+
+
+/**
+ * MEMO style.css/add.css の追加・上書きする
+ *
+ * NOTE: 88px → headerの高さ
+ */
+@media (max-width: 640px) {
+  .shop-botanical .header,
+  .shop-corporate .header,
+  .shop-rich .header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5000;
+  }  
+}
+
+.shop-botanical .l-mainContainer.top {
+  padding-top: 0;
+}
+
+@media (min-width: 1001px) {
+  .shop-botanical .l-mainContainer.top {
+    padding-top: 88px;
+  }  
+}
+
+
+/**
+ * ショップトップ メインビジュアル スライダー 
+ *
+ * ATTENSION: 
+ * 640px(640px以下がSPの場合：横幅と左右余白)はJSと連動しているため
+ * 640pxを修正する場合は、JSの修正も必要
+ *
+ * NOTE:
+ * 7rem → SP時 headerの高さ
+ * 5.2rem → SP時 tabbarの高さ
+ */
+
+/* 共通 */
+.mainvisual,
+.mainvisual * {
+  appearance: none;
+}
+
+.mainvisual *:focus-visible {
+  appearance: none;
+}
+
+.mainvisual--sp {
+  display: none;
+}
+
+.mainvisual {
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+
+  width: 100%;
+  height: 520px;
+}
+
+.mainvisual__serif {
+  font-family: "Times New Roman", "游明朝", "Yu Mincho", "游明朝体", "YuMincho", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "HiraMinProN-W3", "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+
+.mainvisual__sans-serif {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック", YuGothic, "メイリオ", Meiryo, sans-serif;
+}
+ 
+.mainvisual__frame {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.mainvisual__inner {
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+
+  display: block;
+  width: 1320px;
+  height: 520px;
+  overflow: hidden;
+}
+
+.mainvisual__outer-text {
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.mainvisual__text-view {
+  display: none;
+}
+
+.mainvisual__text-main,
+.mainvisual__text-sub {
+  display: block;
+}
+
+.mainvisual__text-main {
+  font-size: 34px;
+  line-height: 1.6;
+}
+
+.mainvisual__text-sub {
+  font-size: 16px;
+  line-height: 1.875;
+}
+
+.mainvisual__img,
+.mainvisual__filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;  
+}
+
+.mainvisual__img {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.shop-natural .mainvisual__img.noimage {
+  background: #ccc;
+}
+.shop-botanical .mainvisual__img.noimage {
+  background: #fff;
+}
+.shop-corporate .mainvisual__img.noimage {
+  background: #ccc;
+}
+.shop-rich .mainvisual__img.noimage {
+  background: unset;
+}
+
+.mainvisual__filter {
+  background-color: #000;
+  opacity: 0;
+}
+
+.mainvisual__outer,
+.mainvisual__img-view,
+.mainvisual__img-view-sp {
+  display: none;
+}
+
+.mainvisual__outer {
+  max-height: 100%;
+  overflow: hidden;
+  color: #fff;
+}
+
+.mainvisual__text {
+  color: #fff;
+}
+
+.mainvisual .slick-track {
+  overflow: hidden;
+}
+
+/* style.cssの影響下のため、上書き対応する */
+.slick-slide img.mainvisual__img-view-sp {
+  display: none;
+}
+
+.mainvisual__dots li {
+  cursor: pointer;
+}
+.mainvisual__dots li button {
+  opacity: 0;
+}
+
+
+/* SP共通 */
+/* サイズはJSと連動しているので、修正する場合はJSも修正すること */
+@media (max-width: 640px) {
+  .mainvisual--sp {
+    display: block;
+  }
+
+  .mainvisual--pc {
+    display: none;
+  }
+
+  .mainvisual__text-sub {
+    font-size: 3.2vw;
+    line-height: 1.8;
+  }
+}
+
+/* ナチュラル用 */
+.mainvisual--natural .mainvisual__link {  
+  margin: 0 20px;
+}
+
+.mainvisual--natural.mainvisual--one .mainvisual__link {
+  margin: 0 auto;
+}
+
+.mainvisual--natural .mainvisual__text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-direction: column;
+  width: 1320px;
+  height: 100%;
+
+  margin-left: -660px;
+  padding: 40px 0;
+  box-sizing: border-box;
+
+  text-align: center;  
+  line-height: 1.7;
+}
+
+.mainvisual--natural .mainvisual__text-main {
+  padding: 10px 16%;
+}
+
+.mainvisual--natural .mainvisual__text-sub {  
+  padding: 0 14%;
+  font-size: 18px;
+}
+
+.mainvisual--natural .mainvisual__img,
+.mainvisual--natural .mainvisual__filter {
+  border-radius: 32px; 
+}
+
+.mainvisual--natural .mainvisual__dots {
+  position: absolute;
+  left: 0;
+  bottom: 22px;
+  z-index: 3;
+
+  display: flex;
+  justify-content: center;
+  column-gap: 12px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.mainvisual--natural .mainvisual__dots li {
+  background-color: #EFE3DC;
+  width: 16px;
+  height: 16px;
+  border-radius: 6px;
+}
+
+.mainvisual--natural .mainvisual__dots li.slick-active {
+  background-color: #7F5D4C;
+}
+
+@media (max-width: 1400px) {
+  .mainvisual--natural .mainvisual__link {
+    margin: 0 10px;
+  }
+
+  .mainvisual--natural.mainvisual--one .mainvisual__link {
+    margin: 0 auto;
+  }
+
+  .mainvisual--natural .mainvisual__inner {
+    width: calc(100vw - 80px);
+    max-width: 1320px;
+  }
+}
+
+@media (max-width: 640px) {
+  .mainvisual--natural,
+  .mainvisual--natural .mainvisual__frame {
+    height: min(calc(100vh - 5.2rem), 112.53vw);
+    height: min(calc(100dvh - 5.2rem), 112.53vw); 
+  }
+  
+  .mainvisual--natural.mainvisual--init,
+  .mainvisual--natural.mainvisual--init .mainvisual__frame,
+  .mainvisual--natural.mainvisual--one,
+  .mainvisual--natural.mainvisual--one .mainvisual__frame {
+    height: min(calc(100vh - 5.2rem), 126vw);
+    height: min(calc(100dvh - 5.2rem), 126vw);    
+  }
+
+  .mainvisual--natural .mainvisual__link {
+    display: block;
+    width: 82.13vw;
+    height: min(calc(100vh - 5.2rem), 112.53vw);
+    height: min(calc(100dvh - 5.2rem), 112.53vw);
+    margin: 0 2.13vw;
+  }
+  
+  .mainvisual--natural.mainvisual--init .mainvisual__link,
+  .mainvisual--natural.mainvisual--one .mainvisual__link {
+    width: 92vw;
+    height: min(calc(100vh - 5.2rem), 126vw);
+    height: min(calc(100dvh - 5.2rem), 126vw);
+  }
+  
+  .mainvisual--natural.mainvisual--one .mainvisual__link {
+    margin: 0 auto; 
+  }
+  
+  .mainvisual--natural .mainvisual__inner {
+    width: 100%;
+    height: 100%;
+  }
+
+  .mainvisual--natural .mainvisual__text {
+    left: 0;
+    width: 100%;
+    margin-left: 0px;
+    padding: 16px 0;
+  }
+
+  .mainvisual--natural .mainvisual__text-main {
+    padding: 10% 6%;
+    font-size: 20px;
+  }
+
+  .mainvisual--natural .mainvisual__text-sub {
+    padding: 0 10%;
+    font-size: 12px;
+  }
+
+  .mainvisual--natural .mainvisual__dots {
+    bottom: 12px;
+  }
+  .mainvisual--natural .mainvisual__dots li {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+
+/* ボタニカル用 */
+.mainvisual--botanical {
+  margin: 30px auto 100px;
+}
+
+@media (max-width: 1320px) {
+  .mainvisual--botanical {
+    margin-top: 0;
+  }  
+}
+
+.mainvisual--botanical .mainvisual__frame {
+  width: 1320px;
+  margin: auto;
+}
+
+.mainvisual--botanical .mainvisual__text {
+  display: none;
+}
+
+.mainvisual--botanical .mainvisual__outer {
+  position: absolute;
+  right: 0;
+  bottom: -100px;
+  z-index: 2;
+  display: block;
+  width: calc(50vw + 22px);
+  min-width: 682px;
+}
+
+.mainvisual--botanical .mainvisual__outer-link {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  column-gap: 44px;
+
+  width: 682px;
+  min-height: 200px;
+  padding: 53px 44px 56px 44px;
+  box-sizing: border-box;
+}
+
+.mainvisual--botanical .mainvisual__text-main,
+.mainvisual--botanical .mainvisual__text-sub {
+  display: block;
+}
+
+.mainvisual--botanical .mainvisual__text-main {
+  margin: 0 0 30px;
+  font-size: 28px;
+  line-height: 1.5;
+  letter-spacing: 0.025em;
+}
+
+.mainvisual--botanical .mainvisual__text-sub {
+  letter-spacing: 0.03em;
+}
+
+.mainvisual--botanical .mainvisual__text-sub,
+.mainvisual--botanical .mainvisual__outer-view {
+  font-size: 16px;
+  line-height: 1.875;
+}
+
+.mainvisual--botanical .mainvisual__img-view--botanical {
+  display: block;
+  min-width: 110px;
+  width: 110px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.mainvisual--botanical .mainvisual__dots {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 40px;
+  height: 100%;
+  padding: 100px 14px 50px;
+  box-sizing: border-box;
+}
+
+.mainvisual--botanical .mainvisual__dots li {
+  width: 100%;
+  height: 48px;
+  border-right-width: 3px;
+  border-right-style: solid;
+  border-right-color: rgba(255, 255, 255, 0.5);
+}
+
+.mainvisual--botanical .mainvisual__dots li.slick-active {
+  border-right-color: #fff;
+}
+
+@media (max-width: 1320px) {
+  .mainvisual--botanical .mainvisual__inner,
+  .mainvisual--botanical .mainvisual__frame {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .mainvisual--botanical {
+    margin: 0;
+    padding: 0 0 58px;
+  }
+
+  .mainvisual--botanical,
+  .mainvisual--botanical .mainvisual__inner,
+  .mainvisual--botanical .mainvisual__frame {
+    height: min(calc(100vh - 5.2rem), calc(137vw + 58px));
+    height: min(calc(100dvh - 5.2rem), calc(137vw + 58px));
+  }
+
+  .mainvisual--botanical .mainvisual__img {
+    height: min(137vw, 100vh - 5.2rem);
+    height: min(137vw, 100dvh - 5.2rem);
+  }
+
+  .mainvisual--botanical .mainvisual__text-view,
+  .mainvisual--botanical .mainvisual__img-view--botanical {
+    display: block;
+  }
+
+  /* style.css の影響下のため */
+  .mainvisual--botanical .slick-slide img.mainvisual__img-view--botanical {
+    display: block;
+  }
+
+  .mainvisual--botanical .mainvisual__text {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: block;
+    max-height: calc(100% - 40px - 7rem);
+    width: 89.53%;
+    padding: 30px;
+    box-sizing: border-box;
+  }
+
+  .mainvisual--botanical .mainvisual__text-main {
+    display: block;
+    margin: 0 0 2.67vw;
+    font-size: 5.33vw;
+    line-height: 1.6;
+  }
+  .mainvisual--botanical .mainvisual__text-sub {
+    display: block;
+    margin: 0 0 2.67vw;
+  }
+
+  .mainvisual--botanical .mainvisual__text-view img {
+    width: auto;
+    height: 4.27vw;
+    margin: 0 0 0 auto;
+    object-position: right top;
+  }
+
+  .mainvisual--botanical .mainvisual__outer {
+    display: none;
+  }
+
+  .mainvisual--botanical .mainvisual__dots {
+    top: unset;
+    right: unset;
+    bottom: 58px;
+    left: 0;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .mainvisual--botanical .mainvisual__dots li {
+    width: 100%;
+    height: 24px;
+    border-right: none;
+    border-left-width: 2px;
+    border-left-style: solid;
+    border-left-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .mainvisual--botanical .mainvisual__dots li.slick-active {
+    border-left-color: #fff;
+  }
+}
+
+/* コーポレート用 */
+.mainvisual--corporate {
+  overflow: hidden;
+}
+.mainvisual--corporate .mainvisual__frame {
+  width: calc(50% + 435px);
+  margin: 0 0 0 auto;
+}
+
+.mainvisual--corporate .mainvisual__link,
+.mainvisual--corporate .mainvisual__inner {
+  width: 100%;
+}
+
+.mainvisual--corporate .mainvisual__text {
+  display: none;
+}
+
+.mainvisual--corporate .mainvisual__outer {
+  position: absolute;
+  left: 50%;
+  bottom: 60px;
+  z-index: 2;
+  display: block;
+  max-height: calc(100% - 120px);
+  min-width: 536px;
+  max-width: 726px;
+  margin: 0 0 0 -660px;
+  overflow: unset;
+  
+}
+
+.mainvisual--corporate .mainvisual__outer-link {
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: block;
+  min-height: 200px;
+  padding: 44px 44px 50px 44px;
+  color: #333839;
+}
+
+.mainvisual--corporate .mainvisual__text-main {
+  margin: 0 0 12px;
+  letter-spacing: 0.01em;
+}
+
+.mainvisual--corporate .mainvisual__text-sub {
+  letter-spacing: 0.03em;
+}
+
+.mainvisual--corporate .mainvisual__outer-view {
+  position: absolute;
+  bottom: 28px;
+  right: -40px;
+  z-index: 2;
+}
+
+.mainvisual--corporate .mainvisual__img-view--corporate {
+  display: block;
+  width: 104px;
+  height: 8px;
+}
+
+.mainvisual--corporate .mainvisual__dots {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px;
+}
+
+.mainvisual--corporate .mainvisual__dots li {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.mainvisual--corporate .mainvisual__dots li.slick-active {
+  background: #fff;
+}
+
+@media (max-width: 1320px) {
+  .mainvisual--corporate .mainvisual__outer {
+    left: 0;
+    min-width: unset;
+    max-width: 60%;
+    margin: 0;
+  }  
+}
+
+@media (max-width: 640px) {
+  .mainvisual--corporate {
+    margin: 0;
+    padding: 0 0 120px;
+  }
+
+  .mainvisual--corporate .mainvisual__img {
+    height: 137vw;
+  }
+
+  .mainvisual--corporate,
+  .mainvisual--corporate .mainvisual__inner,
+  .mainvisual--corporate .mainvisual__frame {
+    width: 100%;
+    height: min(calc(100vh - 5.2rem), calc(137vw + 120px));
+    height: min(calc(100dvh - 5.2rem), calc(137vw + 120px));
+  }  
+
+  .mainvisual--corporate .mainvisual__outer {
+    display: none;
+  }
+
+  .mainvisual--corporate .mainvisual__text-view {
+    display: block;
+  }  
+
+  .mainvisual--corporate .mainvisual__text {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    display: block;
+    max-height: calc(100% - 10px);
+    width: calc(100vw - 40px);
+    margin-left: 10px;
+    padding: 32px;
+    box-sizing: border-box;
+    color: #333839;
+  }
+
+  .mainvisual--corporate .mainvisual__text-main {
+    display: block;
+    margin: 0 0 3.2vw;
+    font-size: 5.33vw;
+    line-height: 1.6;
+  }
+  
+  .mainvisual--corporate .mainvisual__text-sub {
+    display: block;
+    margin: 0 0 6.93vw;
+  }
+
+  .mainvisual--corporate .mainvisual__text-view {
+    position: absolute;
+    bottom: 42px;
+    right: -22px;
+    z-index: 2;
+  }
+
+  .mainvisual--corporate .mainvisual__img-view--corporate {
+    width: auto;
+    height: 8px;
+  }
+
+  .mainvisual--corporate .mainvisual__text-view,
+  .mainvisual--corporate .mainvisual__img-view--corporate {
+    display: block;
+  } 
+
+  /* style.css の影響下のため */
+  .mainvisual--corporate .slick-slide img.mainvisual__img-view--corporate {
+    display: block;
+  }
+
+  .mainvisual--corporate .mainvisual__dots {
+    top: unset;
+    right: unset;
+    bottom: 0;
+    left: 0;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 30px 10px 24px 42px;
+  }
+
+  .mainvisual--corporate .mainvisual__dots li {
+    width: 6px;
+    height: 6px;
+    border: 1px solid #333839;
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+
+  .mainvisual--corporate .mainvisual__dots li.slick-active {
+    background-color: #333839;
+  }
+}
+
+/* リッチ */
+.mainvisual--rich {
+  background-color: #0F0D12;
+}
+
+.mainvisual--rich .mainvisual__frame {
+  width: calc(50% + 435px);
+  margin: 0 0 0 auto;
+}
+
+.mainvisual--rich .mainvisual__link,
+.mainvisual--rich .mainvisual__inner {
+  width: 100%;
+}
+
+.mainvisual--rich .mainvisual__text {
+  display: none;
+}
+
+.mainvisual--rich .mainvisual__outer {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  z-index: 2;
+  display: block;
+  min-width: 536px;
+  max-width: 804px;
+  height: 100%;
+  margin: 0 0 0 -700px;
+  padding: 80px 140px 80px 40px;
+  box-sizing: border-box;
+  background: linear-gradient(to left, rgba(26,24,30,0), rgba(26,24,30,1) 280px, #0F0D12 100%);
+}
+
+.mainvisual--rich .mainvisual__outer-link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+
+.mainvisual--rich .mainvisual__text-main {
+  margin: 0 0 20px;
+  letter-spacing: 0.01em;
+}
+
+.mainvisual--rich .mainvisual__text-sub {
+  line-height: 2.25;
+  letter-spacing: 0.03em;
+}
+
+.mainvisual--rich .mainvisual__dots {
+  position: absolute;
+  bottom: 0;
+  left: -265px;
+  z-index: 3;
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 30px 0 24px 30px;
+}
+
+.mainvisual--rich .mainvisual__dots li {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 60px;
+  height: 23px;
+  opacity: 0.4;
+}
+
+.mainvisual--rich .mainvisual__dots li::after {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #DFDFE0;
+}
+
+.mainvisual--rich .mainvisual__dots li.slick-active {
+  opacity: 1;
+}
+
+@media (max-width: 1400px) {
+  .mainvisual--rich .mainvisual__dots {
+    left: 0;
+  }  
+
+  .mainvisual--rich .mainvisual__outer {
+    left: 0;
+    min-width: unset;
+    max-width: 80%;
+    margin: 0;
+  }  
+}
+
+@media (max-width: 640px) {
+  .mainvisual--rich {
+    margin: 0;
+    padding: 0 0 150px;
+  }
+
+  .mainvisual--rich .mainvisual__img {
+    height: 137vw;
+  }
+
+  .mainvisual--rich,
+  .mainvisual--rich .mainvisual__inner,
+  .mainvisual--rich .mainvisual__frame {
+    width: 100%;
+    height: min(calc(100vh - 5.2rem), calc(137vw + 150px));
+    height: min(calc(100dvh - 5.2rem), calc(137vw + 150px));
+  }  
+
+  .mainvisual--rich .mainvisual__outer {
+    display: none;
+  }
+
+  .mainvisual--rich .mainvisual__text-view {
+    display: block;
+  }  
+
+  .mainvisual--rich .mainvisual__text {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    display: block;
+    max-height: 100%;
+    width: 100%;
+    padding: 62px 28px;
+    box-sizing: border-box;
+    background: linear-gradient(to top, #0F0D12, rgba(26,24,30,1) 150px, rgba(26,24,30,0) 100%);
+  }
+
+  .mainvisual--rich .mainvisual__text-main {
+    display: block;
+    margin: 0 0 3.2vw;    
+    font-size: 5.87vw;
+    line-height: 1.6;
+  }
+  
+  .mainvisual--rich .mainvisual__text-sub {
+    display: block;
+    margin: 0;
+    line-height: 2;
+  }
+
+  .mainvisual--rich .mainvisual__dots {
+    left: unset;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    width: unset;
+    padding: 10px 19px 34px;
+
+  }
+
+  .mainvisual--rich .mainvisual__dots li {
+    width: 20px;
+    height: 23px;
+  }
+}
+
+/* フォントサイズ(デフォルト設定) */
+/* MEMO: 760〜761pxのときはテキスト崩れあり */
+@media (min-width: 761px) {
+  .mainvisual[data-pcsp='sp'] .mainvisual__text-main {
+    font-size: 34px;
+  }
+
+  .mainvisual--botanical[data-pcsp='sp'] .mainvisual__text-main {
+    font-size: 28px;
+  }  
+}
+
+@media (max-width: 640px) {
+  .mainvisual[data-pcsp='pc'] .mainvisual__text-main {
+    font-size: 5.33vw;
+  }
+
+  .mainvisual--rich[data-pcsp='pc'] .mainvisual__text-main {
+    font-size: 5.87vw;
+  }
+  
+  .mainvisual[data-pcsp='pc'] .mainvisual__text-sub {
+    font-size: 3.2vw;
+  }
+}
+
+
+/* フォントサイズ(個別設定) */
+.mainvisual .fontsize-10{font-size:10px}.mainvisual .fontsize-11{font-size:11px}.mainvisual .fontsize-12{font-size:12px}.mainvisual .fontsize-13{font-size:13px}.mainvisual .fontsize-14{font-size:14px}.mainvisual .fontsize-15{font-size:15px}.mainvisual .fontsize-16{font-size:16px}.mainvisual .fontsize-17{font-size:17px}.mainvisual .fontsize-18{font-size:18px}.mainvisual .fontsize-19{font-size:19px}.mainvisual .fontsize-20{font-size:20px}.mainvisual .fontsize-21{font-size:21px}.mainvisual .fontsize-22{font-size:22px}.mainvisual .fontsize-23{font-size:23px}.mainvisual .fontsize-24{font-size:24px}.mainvisual .fontsize-25{font-size:25px}.mainvisual .fontsize-26{font-size:26px}.mainvisual .fontsize-27{font-size:27px}.mainvisual .fontsize-28{font-size:28px}.mainvisual .fontsize-29{font-size:29px}.mainvisual .fontsize-30{font-size:30px}.mainvisual .fontsize-31{font-size:31px}.mainvisual .fontsize-32{font-size:32px}.mainvisual .fontsize-33{font-size:33px}.mainvisual .fontsize-34{font-size:34px}.mainvisual .fontsize-35{font-size:35px}.mainvisual .fontsize-36{font-size:36px}.mainvisual .fontsize-37{font-size:37px}.mainvisual .fontsize-38{font-size:38px}.mainvisual .fontsize-39{font-size:39px}.mainvisual .fontsize-40{font-size:40px}.mainvisual .fontsize-41{font-size:41px}.mainvisual .fontsize-42{font-size:42px}.mainvisual .fontsize-43{font-size:43px}.mainvisual .fontsize-44{font-size:44px}.mainvisual .fontsize-45{font-size:45px}.mainvisual .fontsize-46{font-size:46px}.mainvisual .fontsize-47{font-size:47px}.mainvisual .fontsize-48{font-size:48px}.mainvisual .fontsize-49{font-size:49px}.mainvisual .fontsize-50{font-size:50px}.mainvisual .fontsize-51{font-size:51px}.mainvisual .fontsize-52{font-size:52px}.mainvisual .fontsize-53{font-size:53px}.mainvisual .fontsize-54{font-size:54px}.mainvisual .fontsize-55{font-size:55px}.mainvisual .fontsize-56{font-size:56px}.mainvisual .fontsize-57{font-size:57px}.mainvisual .fontsize-58{font-size:58px}.mainvisual .fontsize-59{font-size:59px}.mainvisual .fontsize-60{font-size:60px}.mainvisual .fontsize-61{font-size:61px}.mainvisual .fontsize-62{font-size:62px}.mainvisual .fontsize-63{font-size:63px}.mainvisual .fontsize-64{font-size:64px}.mainvisual .fontsize-65{font-size:65px}.mainvisual .fontsize-66{font-size:66px}.mainvisual .fontsize-67{font-size:67px}.mainvisual .fontsize-68{font-size:68px}.mainvisual .fontsize-69{font-size:69px}.mainvisual .fontsize-70{font-size:70px}.mainvisual .fontsize-71{font-size:71px}.mainvisual .fontsize-72{font-size:72px}.mainvisual .fontsize-73{font-size:73px}.mainvisual .fontsize-74{font-size:74px}.mainvisual .fontsize-75{font-size:75px}.mainvisual .fontsize-76{font-size:76px}.mainvisual .fontsize-77{font-size:77px}.mainvisual .fontsize-78{font-size:78px}.mainvisual .fontsize-79{font-size:79px}.mainvisual .fontsize-80{font-size:80px}.mainvisual .fontsize-81{font-size:81px}.mainvisual .fontsize-82{font-size:82px}.mainvisual .fontsize-83{font-size:83px}.mainvisual .fontsize-84{font-size:84px}.mainvisual .fontsize-85{font-size:85px}.mainvisual .fontsize-86{font-size:86px}.mainvisual .fontsize-87{font-size:87px}.mainvisual .fontsize-88{font-size:88px}.mainvisual .fontsize-89{font-size:89px}.mainvisual .fontsize-90{font-size:90px}.mainvisual .fontsize-91{font-size:91px}.mainvisual .fontsize-92{font-size:92px}.mainvisual .fontsize-93{font-size:93px}.mainvisual .fontsize-94{font-size:94px}.mainvisual .fontsize-95{font-size:95px}.mainvisual .fontsize-96{font-size:96px}.mainvisual .fontsize-97{font-size:97px}.mainvisual .fontsize-98{font-size:98px}.mainvisual .fontsize-99{font-size:99px}.mainvisual .fontsize-100{font-size:100px}
+
+@media (max-width: 640px) {
+.mainvisual .fontsize-10{font-size:2.6666666667vw}.mainvisual .fontsize-11{font-size:2.9333333333vw}.mainvisual .fontsize-12{font-size:3.2vw}.mainvisual .fontsize-13{font-size:3.4666666667vw}.mainvisual .fontsize-14{font-size:3.7333333333vw}.mainvisual .fontsize-15{font-size:4vw}.mainvisual .fontsize-16{font-size:4.2666666667vw}.mainvisual .fontsize-17{font-size:4.5333333333vw}.mainvisual .fontsize-18{font-size:4.8vw}.mainvisual .fontsize-19{font-size:5.0666666667vw}.mainvisual .fontsize-20{font-size:5.3333333333vw}.mainvisual .fontsize-21{font-size:5.6vw}.mainvisual .fontsize-22{font-size:5.8666666667vw}.mainvisual .fontsize-23{font-size:6.1333333333vw}.mainvisual .fontsize-24{font-size:6.4vw}.mainvisual .fontsize-25{font-size:6.6666666667vw}.mainvisual .fontsize-26{font-size:6.9333333333vw}.mainvisual .fontsize-27{font-size:7.2vw}.mainvisual .fontsize-28{font-size:7.4666666667vw}.mainvisual .fontsize-29{font-size:7.7333333333vw}.mainvisual .fontsize-30{font-size:8vw}.mainvisual .fontsize-31{font-size:8.2666666667vw}.mainvisual .fontsize-32{font-size:8.5333333333vw}.mainvisual .fontsize-33{font-size:8.8vw}.mainvisual .fontsize-34{font-size:9.0666666667vw}.mainvisual .fontsize-35{font-size:9.3333333333vw}.mainvisual .fontsize-36{font-size:9.6vw}.mainvisual .fontsize-37{font-size:9.8666666667vw}.mainvisual .fontsize-38{font-size:10.1333333333vw}.mainvisual .fontsize-39{font-size:10.4vw}.mainvisual .fontsize-40{font-size:10.6666666667vw}.mainvisual .fontsize-41{font-size:10.9333333333vw}.mainvisual .fontsize-42{font-size:11.2vw}.mainvisual .fontsize-43{font-size:11.4666666667vw}.mainvisual .fontsize-44{font-size:11.7333333333vw}.mainvisual .fontsize-45{font-size:12vw}.mainvisual .fontsize-46{font-size:12.2666666667vw}.mainvisual .fontsize-47{font-size:12.5333333333vw}.mainvisual .fontsize-48{font-size:12.8vw}.mainvisual .fontsize-49{font-size:13.0666666667vw}.mainvisual .fontsize-50{font-size:13.3333333333vw}.mainvisual .fontsize-51{font-size:13.6vw}.mainvisual .fontsize-52{font-size:13.8666666667vw}.mainvisual .fontsize-53{font-size:14.1333333333vw}.mainvisual .fontsize-54{font-size:14.4vw}.mainvisual .fontsize-55{font-size:14.6666666667vw}.mainvisual .fontsize-56{font-size:14.9333333333vw}.mainvisual .fontsize-57{font-size:15.2vw}.mainvisual .fontsize-58{font-size:15.4666666667vw}.mainvisual .fontsize-59{font-size:15.7333333333vw}.mainvisual .fontsize-60{font-size:16vw}.mainvisual .fontsize-61{font-size:16.2666666667vw}.mainvisual .fontsize-62{font-size:16.5333333333vw}.mainvisual .fontsize-63{font-size:16.8vw}.mainvisual .fontsize-64{font-size:17.0666666667vw}.mainvisual .fontsize-65{font-size:17.3333333333vw}.mainvisual .fontsize-66{font-size:17.6vw}.mainvisual .fontsize-67{font-size:17.8666666667vw}.mainvisual .fontsize-68{font-size:18.1333333333vw}.mainvisual .fontsize-69{font-size:18.4vw}.mainvisual .fontsize-70{font-size:18.6666666667vw}.mainvisual .fontsize-71{font-size:18.9333333333vw}.mainvisual .fontsize-72{font-size:19.2vw}.mainvisual .fontsize-73{font-size:19.4666666667vw}.mainvisual .fontsize-74{font-size:19.7333333333vw}.mainvisual .fontsize-75{font-size:20vw}.mainvisual .fontsize-76{font-size:20.2666666667vw}.mainvisual .fontsize-77{font-size:20.5333333333vw}.mainvisual .fontsize-78{font-size:20.8vw}.mainvisual .fontsize-79{font-size:21.0666666667vw}.mainvisual .fontsize-80{font-size:21.3333333333vw}.mainvisual .fontsize-81{font-size:21.6vw}.mainvisual .fontsize-82{font-size:21.8666666667vw}.mainvisual .fontsize-83{font-size:22.1333333333vw}.mainvisual .fontsize-84{font-size:22.4vw}.mainvisual .fontsize-85{font-size:22.6666666667vw}.mainvisual .fontsize-86{font-size:22.9333333333vw}.mainvisual .fontsize-87{font-size:23.2vw}.mainvisual .fontsize-88{font-size:23.4666666667vw}.mainvisual .fontsize-89{font-size:23.7333333333vw}.mainvisual .fontsize-90{font-size:24vw}.mainvisual .fontsize-91{font-size:24.2666666667vw}.mainvisual .fontsize-92{font-size:24.5333333333vw}.mainvisual .fontsize-93{font-size:24.8vw}.mainvisual .fontsize-94{font-size:25.0666666667vw}.mainvisual .fontsize-95{font-size:25.3333333333vw}.mainvisual .fontsize-96{font-size:25.6vw}.mainvisual .fontsize-97{font-size:25.8666666667vw}.mainvisual .fontsize-98{font-size:26.1333333333vw}.mainvisual .fontsize-99{font-size:26.4vw}.mainvisual .fontsize-100{font-size:26.6666666667vw}
