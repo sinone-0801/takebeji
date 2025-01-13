@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Slide In/Out Loop with Text at Right Bottom</title>
+  <style>
+    /* === 親コンテナ：スライド表示領域 === */
+    .slider-container {
+      position: relative;
+      width: 800px;      /* 例: 固定幅（%でもOK） */
+      height: 400px;     /* 例: 全スライド共通の高さ */
+      margin: 30px auto; /* 中央寄せ */
+      overflow: hidden;  
+      background: #ccc;  /* デバッグ用の背景色 */
+    }
+
+    /* === 各スライド共通 === */
+    .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        transform: translateX(100%);
+        transition: transform 0.6s ease;
+        z-index: 1; /* デフォルトの重なり順 */
+    }
+
+    /* 表示中のスライド：中央へ */
+    .slide.active {
+        transform: translateX(0);
+        z-index: 2; /* アクティブなスライドを前面に */
+    }
+
+    /* 退場スライド：左に抜ける */
+    .slide.slide-out-left {
+        transform: translateX(-100%);
+        z-index: 1; /* 退場するスライドを背面に */
+    }
+
+    /* === 背景画像のサンプル === */
+    #slide1 {
+      background: url('/images/slider_sp_image_1.png') center/cover no-repeat;
+    }
+    #slide2 {
+      background: url('/images/slider_sp_image_2.png') center/cover no-repeat;
+    }
+    #slide3 {
+      background: url('/images/slider_sp_image_3.png') center/cover no-repeat;
+    }
+
+    /* === スライド右下のテキストボックス === */
+    .slide-textbox {
+      position: absolute;
+      bottom: 20px; 
+      right: 20px;
+      width: 40%;               /* お好みで調整 */
+      background: rgba(0,0,0,0.4); /* 半透明黒背景 */
+      color: #fff;
+      padding: 1rem;
+      font-size: 1rem;
+      line-height: 1.4;
+      box-sizing: border-box;
+    }
+    .slide-textbox h2 {
+      margin: 0 0 1rem;
+      font-size: 1.2rem;
+    }
+    .slide-textbox p {
+      margin: 0 0 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="slider-container">
+  <!-- スライド1 -->
+  <div class="slide active" id="slide1">
+    <div class="slide-textbox">
+      <h2>たけべじの<br>気まま季節のおやさい便やってます</h2>
+      <p>
+        農薬や化学肥料などは使わず自然のチカラそのままに。<br>
+        その時々の旬を詰め込んでお届けします。
+      </p>
+      <img src="/images/slider_view.svg" alt ="view→">
+    </div>
+  </div>
+
+  <!-- スライド2 -->
+  <div class="slide" id="slide2">
+    <div class="slide-textbox">
+      <h2>農と食に、<br>しんけんに向き合う。</h2>
+      <p>
+        農薬や化学肥料をつかわないお野菜栽培と<br>
+        ホンモノごはんをお届けしています。
+      </p>
+      <img src="/images/slider_view.svg" alt ="view→">
+    </div>
+  </div>
+
+  <!-- スライド3 -->
+  <div class="slide" id="slide3">
+    <div class="slide-textbox">
+      <h2>たけべじの、たけ弁</h2>
+      <p>
+        穀物と野菜のチカラ。<br>
+        シンプルな豊かさを。<br>
+        マルシェや個別受注などで限定販売しています。
+      </p>
+      <img src="/images/slider_view.svg" alt ="view→">
+    </div>
+  </div>
+</div>
+
+<script>
+  const slides = [
+    document.getElementById('slide1'),
+    document.getElementById('slide2'),
+    document.getElementById('slide3')
+  ];
+  const totalSlides = slides.length;
+  let currentIndex = 0; // 今表示中のスライドのインデックス
+
+  function goNext() {
+    const currentSlide = slides[currentIndex];
+    const nextIndex = (currentIndex + 1) % totalSlides;
+    const nextSlide = slides[nextIndex];
+
+    // 次スライドの準備
+    nextSlide.classList.remove('slide-out-left');
+    nextSlide.classList.add('active');
+
+    // 現在のスライドを左へ
+    currentSlide.classList.remove('active');
+    currentSlide.classList.add('slide-out-left');
+
+    // アニメ後処理
+    const handleTransitionEnd = (e) => {
+        if (e.propertyName === 'transform') {
+            currentSlide.classList.remove('slide-out-left');
+            // style.transformでの直接指定を削除し、クラスでのみ制御
+            currentSlide.removeEventListener('transitionend', handleTransitionEnd);
+        }
+    };
+    currentSlide.addEventListener('transitionend', handleTransitionEnd);
+
+    currentIndex = nextIndex;
+}
+
+  // 5秒ごとに切り替え
+  setInterval(goNext, 5000);
+</script>
+
+</body>
+</html>
