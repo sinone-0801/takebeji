@@ -7,8 +7,9 @@
     /* === 親コンテナ：スライド表示領域 === */
     .slider-container {
       position: relative;
-      width: 800px;      /* 例: 固定幅（%でもOK） */
-      height: 400px;     /* 例: 全スライド共通の高さ */
+      /* width: 800px;      例: 固定幅（%でもOK） */
+      width: 95%;
+      height: 600px;     /* 例: 全スライド共通の高さ */
       margin: 30px auto; /* 中央寄せ */
       overflow: hidden;  
       background: #ccc;  /* デバッグ用の背景色 */
@@ -40,7 +41,7 @@
     }
 
     /* === 背景画像のサンプル === */
-    #slide1 {
+    /* #slide1 {
       background: url('/images/slider_sp_image_1.png') center/cover no-repeat;
     }
     #slide2 {
@@ -48,6 +49,18 @@
     }
     #slide3 {
       background: url('/images/slider_sp_image_3.png') center/cover no-repeat;
+    } */
+    #slide1 {
+      /* にんじん */
+      background: url('https://cms2.tsuku2.shop//pic/slider_pc/0000212358/slider_pc_20220918_223656_036_M.jpg') center/cover no-repeat;
+    }
+    #slide2 {
+      /* ほうれん草 */
+      background: url('https://cms2.tsuku2.shop//pic/slider_pc/0000212358/slider_pc_20220918_224713_150_M.jpg') center/cover no-repeat;
+    }
+    #slide3 {
+      /* 何か */
+      background: url('https://cms2.tsuku2.shop//pic/slider_pc/0000212358/slider_pc_20220918_223652_395_M.jpg') center/cover no-repeat;
     }
 
     /* === スライド右下のテキストボックス === */
@@ -57,19 +70,64 @@
       right: 20px;
       width: 40%;               /* お好みで調整 */
       background: rgba(0,0,0,0.4); /* 半透明黒背景 */
-      color: #fff;
       padding: 1rem;
-      font-size: 1rem;
-      line-height: 1.4;
+      font-size: 18px;
+      color: black;
       box-sizing: border-box;
+      /* 公式 */
+      line-height: 1.875; 
+      font-family: "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
     }
-    .slide-textbox h2 {
+    .slide-textbox strong {
       margin: 0 0 1rem;
-      font-size: 1.2rem;
+      font-size: 30px;
+      /* 公式 */
+      /* font-size: 4.8vw; */
+      margin: 0 0 30px;
     }
     .slide-textbox p {
       margin: 0 0 1rem;
+      /* 公式 */
+      letter-spacing: 0.03em;
     }
+    .slide-textbox img {
+      /* 公式 */
+      display: block;
+      min-width: 110px;
+      width: 110px;
+      height: 16px;
+      object-fit: contain;
+    }
+
+    /* 重ねるやつ */
+    .slider-container {
+      overflow: visible;
+    }
+
+    .slide {
+      /* overflow: visible;
+      z-index: 0; */
+    }
+
+    .slide img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      /* width: 100%; */
+      height: auto;
+    }
+
+    .slide-textbox {
+      /* height: 400px; */
+      position: absolute; /* 絶対配置で自由に移動可能 */
+      right: 0; /* 右端に配置 */
+      bottom: -150px; /* スライドの下にはみ出す */
+      z-index: 2; /* テキストを前面に表示 */
+
+      /* 公式 */
+      width: calc(50vw + 22px);
+    }
+
   </style>
 </head>
 <body>
@@ -78,7 +136,7 @@
   <!-- スライド1 -->
   <div class="slide active" id="slide1">
     <div class="slide-textbox">
-      <h2>たけべじの<br>気まま季節のおやさい便やってます</h2>
+      <strong>たけべじの<br>気まま季節のおやさい便やってます</strong>
       <p>
         農薬や化学肥料などは使わず自然のチカラそのままに。<br>
         その時々の旬を詰め込んでお届けします。
@@ -90,7 +148,7 @@
   <!-- スライド2 -->
   <div class="slide" id="slide2">
     <div class="slide-textbox">
-      <h2>農と食に、<br>しんけんに向き合う。</h2>
+      <strong>農と食に、<br>しんけんに向き合う。</strong>
       <p>
         農薬や化学肥料をつかわないお野菜栽培と<br>
         ホンモノごはんをお届けしています。
@@ -102,7 +160,7 @@
   <!-- スライド3 -->
   <div class="slide" id="slide3">
     <div class="slide-textbox">
-      <h2>たけべじの、たけ弁</h2>
+      <strong>たけべじの、たけ弁</strong>
       <p>
         穀物と野菜のチカラ。<br>
         シンプルな豊かさを。<br>
