@@ -57,6 +57,22 @@
         .then(response => response.text())
         .then(data => {
             document.getElementById('navi_html').innerHTML = data;
+
+			const closeButton = document.getElementById('drawer_controll_close');
+			console.log('Close button:', closeButton); // 要素が取得できているか確認
+
+			if (closeButton) {
+				closeButton.addEventListener('click', function() {
+					console.log('Click event fired'); // クリックイベントの発火確認
+					const drawer = document.getElementsByClassName('drawer');
+					if (drawer) {
+						for(let i=0;i<drawer.length;i++){
+							console.log('Drawer:', drawer[i]); // drawer要素の取得確認
+							drawer[i].classList.remove('show');
+						}
+					}
+				});
+			}
         });
     </script>
 
@@ -71,7 +87,7 @@
     </script>
 
     <!-- TODO: 一旦フリーページの時だけ表示できるようにする -->
-    <main class="l-mainContainer news shop_bg-grad">
+    <main class="l-mainContainer news shop_bg-grad" style="background-image: url('images/background.svg');">
         <aside class="shop_breadcrumb">
             <ul>
                 <li>
@@ -110,8 +126,8 @@
                     </p>
                 </div>
                 <div class="news_item_img">
-                    <img class="pcHide" src="./images/general_notice_20220525_173736_579_M.jpg" alt="2022.10.3　きさいちワンダーテラス森の縁側マルシェ 出店します!" onerror="this.src= 'https://home.tsuku2.jp/assets/img/noimage_news_botanical.svg'; this.removeAttribute('onerror'); this.removeAttribute('onload');">
-                    <img class="spHide" src="./images/general_notice_20220525_173736_579_M.jpg" alt="2022.10.3　きさいちワンダーテラス森の縁側マルシェ 出店します!" onerror="this.src= 'https://home.tsuku2.jp/assets/img/noimage_news_botanical.svg'; this.removeAttribute('onerror'); this.removeAttribute('onload');">
+                    <img class="pcHide" src="./images/general_notice_20220525_173736_579_M.jpg" alt="2022.10.3　きさいちワンダーテラス森の縁側マルシェ 出店します!" onerror="this.src= './images/noimage_news_botanical.svg'; this.removeAttribute('onerror'); this.removeAttribute('onload');">
+                    <img class="spHide" src="./images/general_notice_20220525_173736_579_M.jpg" alt="2022.10.3　きさいちワンダーテラス森の縁側マルシェ 出店します!" onerror="this.src= './images/noimage_news_botanical.svg'; this.removeAttribute('onerror'); this.removeAttribute('onload');">
                 </div>
             </div>
             <div class="news_item" href="#">
@@ -144,80 +160,44 @@
                     </p>
                 </div>
                 <div class="news_item_img">
-                    <img class="pcHide" src="./%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/general_notice_20220601_170830_908_M.jpg" alt="6/12　うめきたmeet fun marche　出店します" onerror="this.src= 'https://home.tsuku2.jp/assets/img/noimage_news_botanical.svg'; this.removeAttribute('onerror'); this.removeAttribute('onload');">
-                    <img class="spHide" src="./%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/general_notice_20220601_170830_908_M.jpg" alt="6/12　うめきたmeet fun marche　出店します" onerror="this.src= 'https://home.tsuku2.jp/assets/img/noimage_news_botanical.svg'; this.removeAttribute('onerror'); this.removeAttribute('onload');">
+                    <img class="pcHide" src="./images/general_notice_20220601_170830_908_M.jpg" alt="6/12　うめきたmeet fun marche　出店します" onerror="this.src= './images/noimage_news_botanical.svg'; this.removeAttribute('onerror'); this.removeAttribute('onload');">
+                    <img class="spHide" src="./images/general_notice_20220601_170830_908_M.jpg" alt="6/12　うめきたmeet fun marche　出店します" onerror="this.src= './images/noimage_news_botanical.svg'; this.removeAttribute('onerror'); this.removeAttribute('onload');">
                 </div>
             </div>
         </section>
     </main>
-    <a class="pagetop js-pageToTop hide" href="https://home.tsuku2.jp/noticeList.php?scd=0000212358"></a>
+    <a class="pagetop js-pageToTop hide" href="./news.html"></a>
     <iframe allow="join-ad-interest-group" data-tagging-id="G-Q8HCF284FH" data-load-time="1737881887230" height="0" width="0" src="./%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/rul.html" style="display: none; visibility: hidden;">
     </iframe>
-    <footer class="l-footer" p1="0000212358" p2="">
-        <div class="shop-footer">
-            <figure class="shop-footer_info-img">
-                <a href="https://home.tsuku2.jp/" target="ec"></a>
-            </figure>
-            <p class="shop-footer_info-text">ツクツク!!!は、モノ（物販）・コト（体験）・ゴチソウ（グルメ）・オメカシ（美容）・チョクバイ（産地直送）のショッピングと予約サイト。
-                <br class="spHide">みんなでシェアし合うおすそわけポイント機能を搭載した総合マーケットプレイスです。</p>
-        </div>
-        <div class="footer-pagetop js-pageToTop">
-            <a>
-                <img src="./%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/pagetop.svg" alt="ページの先頭へ">
-            </a>
-        </div>
-        <div class="footer-bottom">
-            <div class="footer-bottom-norton">
-                <div class="flex-center">
-                    <!--DigiCert社-->
-                    <script type="text/javascript" src="./%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/getseal"></script>
-                    <p class="footer-bottom-norton-txt">当サイトはDigiCert社発行のSSL電子証明書を使用しており、お客様によって入力される内容は個人情報保護方針に基づき送信時にSSLという暗号化技術によって保護されます。</p>
-                </div>
-            </div>
-            <div class="footer-bottom-copyright">
-                <div class="container-1120 md-flex">
-                    <small class="footer-bottom-copyright-txt block">© 2012-2025 ツクツク!!! All Rights Reserved.</small>
-                    <p class="hidden md-block ml-auto">tsuku2.jp</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <aside class="hidden js-modal-joinFanclub js-modal-closeTarget">
-        <div class="modal">
-            <div class="modal-inner">
-                <header class="modal-head">
-                    <h1 class="modal-head-title">ショップ ファンクラブ参加確認</h1>
-                    <p class="modal-head-close js-close-modal">
-                        <span>閉じる</span>
-                        <button type="button">
-                            <img class="modal-head-close-icon" src="./%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/close-circle.svg">
-                        </button>
-                    </p>
-                </header>
-                <!-- ▼ ここからログイン前 ▼ -->
-                <section class="modal-body modal-body--login">
-                    <h1 class="modal-joinFanclub-title">ショップ ファンクラブに参加するには
-                        <span class="modal-nowrap">ツクツク!!!へのログインが必要です。</span>
-                    </h1>
-                    <div class="modal-joinFanclub-login">
-                        <div class="modal-joinFanclub-login-unit">
-                            <h2 class="modal-joinFanclub-login-title">ツクツク!!!アカウントをお持ちの方</h2>
-                            <p class="modal-joinFanclub-login-text">既にツクツク!!!のユーザーアカウントをお持ちの方は
-                                <br class="modal-br">こちらへお進みください。</p>
-                            <button class="modal-button-01 js-button-joinFunclub-login" onclick="location.href='https://home.tsuku2.jp/signin.php?redirect_url='">ログインする</button>
-                        </div>
-                        <div class="modal-joinFanclub-login-unit">
-                            <h2 class="modal-joinFanclub-login-title">ツクツク!!!を初めてご利用の方</h2>
-                            <p class="modal-joinFanclub-login-text">ツクツク!!!を初めてご利用される方は
-                                <br class="modal-br">以下のボタンより新規会員登録を行ってください。</p>
-                            <button class="modal-button-02 js-button-joinFunclub-login" onclick="location.href='https://home.tsuku2.jp/signup.php'">新規会員登録</button>
-                        </div>
-                    </div>
-                </section>
-                <!-- ▲ ここまでログイン前 ▲ -->
-            </div>
-        </div>
-    </aside>
+    <!-- フッター -->
+    <div id="footer_html"></div>
+    <script>
+        fetch('./footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer_html').innerHTML = data;
+        });
+    </script>
+
+    <div id="funclub_html"></div>
+    <script>
+        fetch('./funclub.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('funclub_html').innerHTML = data;
+        });
+    </script>
+    
+	<!-- ショップ終了モーダル -->
+	<div id="nomoreShop_modal_html"></div>
+	<script>
+		fetch('./nomoreShop_modal.html')
+		.then(response => response.text())
+		.then(data => {
+			document.getElementById('nomoreShop_modal_html').innerHTML = data;
+		});
+	</script>
+    
     <script>
     let modal_shop_cd = '0000212358';
       let modal_user_id = '';

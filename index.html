@@ -12,6 +12,7 @@
 	        gtag('js', new Date());
 	        gtag('config', 'G-Q8HCF284FH');
 	</script>
+
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>農と食なひと　たけべじ</title>
@@ -59,6 +60,22 @@
         .then(response => response.text())
         .then(data => {
             document.getElementById('navi_html').innerHTML = data;
+
+			const closeButton = document.getElementById('drawer_controll_close');
+			console.log('Close button:', closeButton); // 要素が取得できているか確認
+
+			if (closeButton) {
+				closeButton.addEventListener('click', function() {
+					console.log('Click event fired'); // クリックイベントの発火確認
+					const drawer = document.getElementsByClassName('drawer');
+					if (drawer) {
+						for(let i=0;i<drawer.length;i++){
+							console.log('Drawer:', drawer[i]); // drawer要素の取得確認
+							drawer[i].classList.remove('show');
+						}
+					}
+				});
+			}
         });
     </script>
 

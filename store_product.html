@@ -50,16 +50,33 @@
             document.getElementById('header_html').innerHTML = data;
         });
     </script>
+    
     <!-- ナビゲーション -->
-    <div id="navi_html">
-    </div>
+    <div id="navi_html"></div>
     <script>
-    fetch('./navi.html')
+        fetch('./navi.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('navi_html').innerHTML = data;
+
+			const closeButton = document.getElementById('drawer_controll_close');
+			console.log('Close button:', closeButton); // 要素が取得できているか確認
+
+			if (closeButton) {
+				closeButton.addEventListener('click', function() {
+					console.log('Click event fired'); // クリックイベントの発火確認
+					const drawer = document.getElementsByClassName('drawer');
+					if (drawer) {
+						for(let i=0;i<drawer.length;i++){
+							console.log('Drawer:', drawer[i]); // drawer要素の取得確認
+							drawer[i].classList.remove('show');
+						}
+					}
+				});
+			}
         });
     </script>
+
     <!-- メルマガ登録確認モーダル -->
     <link rel="stylesheet" href="./css/all.css">
     <div id="mailMagazine_modal_html">
@@ -140,7 +157,9 @@
             </ul>
             <section id="ticket" class="js-more_ticket product_content" data-scd="0000212358">
                 <h3 class="product_content_heading product_content_heading-ticket">
-                    <a target="_blank" href="./ticket.html">ウェブチケット</a>
+                    <a href="javascript:void(0)" class="_blank product_content_items_item funclub_show js-show-modalClass js-show-modal-overlay" data-target-class="nomoreECSite" style="cursor: pointer;">
+                        ウェブチケット
+                    </a>
                 </h3>
                 <div class="product_content_inner">
                     <ul class="product_content_list">
