@@ -7,10 +7,10 @@
     /* === 親コンテナ：スライド表示領域 === */
     .slider-container {
       position: relative;
-      /* width: 800px;      例: 固定幅（%でもOK） */
-      width: 95%;
+      /* 例: 固定幅（%でもOK） */  
+      width: 100%;
       height: 600px;     /* 例: 全スライド共通の高さ */
-      margin: 30px auto; /* 中央寄せ */
+      /* margin: 50px; 中央寄せ */
       overflow: hidden;  
       background: #ccc;  /* デバッグ用の背景色 */
     }
@@ -40,56 +40,46 @@
         z-index: 1; /* 退場するスライドを背面に */
     }
 
-    /* === 背景画像のサンプル === */
-    /* #slide1 {
-      background: url('/images/slider_sp_image_1.png') center/cover no-repeat;
-    }
-    #slide2 {
-      background: url('/images/slider_sp_image_2.png') center/cover no-repeat;
-    }
-    #slide3 {
-      background: url('/images/slider_sp_image_3.png') center/cover no-repeat;
-    } */
+    /* === 背景画像 === */
     #slide1 {
-      /* にんじん */
       background: url('https://cms2.tsuku2.shop//pic/slider_pc/0000212358/slider_pc_20220918_223656_036_M.jpg') center/cover no-repeat;
     }
     #slide2 {
-      /* ほうれん草 */
       background: url('https://cms2.tsuku2.shop//pic/slider_pc/0000212358/slider_pc_20220918_224713_150_M.jpg') center/cover no-repeat;
     }
     #slide3 {
-      /* 何か */
       background: url('https://cms2.tsuku2.shop//pic/slider_pc/0000212358/slider_pc_20220918_223652_395_M.jpg') center/cover no-repeat;
     }
 
     /* === スライド右下のテキストボックス === */
     .slide-textbox {
       position: absolute;
-      bottom: 20px; 
       right: 20px;
-      width: 40%;               /* お好みで調整 */
-      background: rgba(0,0,0,0.4); /* 半透明黒背景 */
-      padding: 1rem;
+      width: 40%;
+      height: 60%;         
+      background: rgba(56, 59, 61, 0.3);
+      padding: 50px;
       font-size: 18px;
       color: black;
       box-sizing: border-box;
+      line-height: 1.6; 
       /* 公式 */
-      line-height: 1.875; 
       font-family: "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
     }
     .slide-textbox strong {
-      margin: 0 0 1rem;
       font-size: 30px;
+      padding-bottom: 30px;
       /* 公式 */
       /* font-size: 4.8vw; */
-      margin: 0 0 30px;
+      /* margin: 0 0 30px; */
+
     }
     .slide-textbox p {
       margin: 0 0 1rem;
       /* 公式 */
       letter-spacing: 0.03em;
     }
+
     .slide-textbox img {
       /* 公式 */
       display: block;
@@ -121,12 +111,98 @@
       /* height: 400px; */
       position: absolute; /* 絶対配置で自由に移動可能 */
       right: 0; /* 右端に配置 */
-      bottom: -150px; /* スライドの下にはみ出す */
+      bottom: -100px; /* スライドの下にはみ出す */
       z-index: 2; /* テキストを前面に表示 */
 
       /* 公式 */
       width: calc(50vw + 22px);
     }
+
+    /*  */
+    /* 不要アニメーション削除 */
+    /*  */
+
+    /* アクティブ以外は非表示にする */
+    .slide {
+      opacity: 0;
+      transform: translateX(100%);
+      transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0);
+      z-index: 1;
+    }
+
+    
+    .slide.slide-out-left {
+      opacity: 0;
+      transform: translateX(-100%); 
+    }
+
+    /*  */
+    /* imgを横に配置 */
+    /*  */
+    .slide-textbox {
+      display: flex; /* 横並び配置を有効化 */
+      align-items: flex-end; /* 縦位置を親要素の下端に揃える */
+      justify-content: space-between; /* 子要素間の余白を均等にする */
+    }
+
+    .slide-text {
+      flex: 9; /* 横幅を全体の9割に設定 */
+      padding: 10px; /* 内側の余白を追加 */
+    }
+
+    .slide-img {
+      flex: 1; /* 横幅を全体の1割に設定 */
+      display: flex; /* 子要素（画像）の配置を制御 */
+      align-items: flex-end; /* 画像を親要素の下端に揃える */
+      justify-content: center; /* 画像を中央揃えにする */
+    }
+
+    .slide-img img {
+      max-width: 100%; /* 画像の横幅を親要素内に収める */
+      height: auto; /* アスペクト比を保つ */
+    }
+
+    .slide-text p {
+      padding-top: 10px;
+    }
+
+    /* slide1専用 */
+    #slide1 .slide-textbox {
+      height: 50%;
+    }
+
+    #slide1 .slide-textbox {
+      margin: 40px;
+    }
+
+    /* slide2専用 */
+    #slide2 .slide-textbox {
+      height: 50%;
+    }
+
+    #slide2 .slide-textbox {
+      margin: 40px;
+    }
+
+    /* slide3専用 */
+    #slide3 .slide-textbox {
+      height: 60%;
+    }
+
+    #slide3 .slide-textbox {
+      margin: 40px;
+    }
+
 
   </style>
 </head>
@@ -136,37 +212,52 @@
   <!-- スライド1 -->
   <div class="slide active" id="slide1">
     <div class="slide-textbox">
-      <strong>たけべじの<br>気まま季節のおやさい便やってます</strong>
-      <p>
-        農薬や化学肥料などは使わず自然のチカラそのままに。<br>
-        その時々の旬を詰め込んでお届けします。
-      </p>
-      <img src="/images/slider_view.svg" alt ="view→">
+      <div class="slide-text">
+        <strong>たけべじの<br>気まま季節のおやさい便やってます</strong>
+        <p>
+          農薬や化学肥料などは使わず自然のチカラそのままに。<br>
+          その時々の旬を詰め込んでお届けします。
+        </p>
+      </div>
+      <div class="slide-img">
+        <img src="/images/slider_view.svg" alt ="view→">
+      </div>
     </div>
   </div>
 
   <!-- スライド2 -->
-  <div class="slide" id="slide2">
+  <div class="slide active" id="slide2">
     <div class="slide-textbox">
-      <strong>農と食に、<br>しんけんに向き合う。</strong>
-      <p>
-        農薬や化学肥料をつかわないお野菜栽培と<br>
-        ホンモノごはんをお届けしています。
-      </p>
-      <img src="/images/slider_view.svg" alt ="view→">
+      <div class="slide-text">
+        <strong>農と食に、<br>しんけんに向き合う。</strong>
+        <p>
+          農薬や化学肥料をつかわないお野菜栽培と<br>
+          ホンモノごはんをお届けしています。
+        </p>
+      </div>
+      <div class="slide-img">
+        <img src="/images/slider_view.svg" alt ="view→">
+      </div>
     </div>
   </div>
 
   <!-- スライド3 -->
   <div class="slide" id="slide3">
     <div class="slide-textbox">
-      <strong>たけべじの、たけ弁</strong>
-      <p>
-        穀物と野菜のチカラ。<br>
-        シンプルな豊かさを。<br>
-        マルシェや個別受注などで限定販売しています。
-      </p>
-      <img src="/images/slider_view.svg" alt ="view→">
+      <div class="slide-text">
+        <strong>たけべじの、たけ弁</strong>
+        <p>
+          穀物と野菜のチカラ。<br>
+          シンプルな豊かさを。<br>
+          マルシェや個別受注などで限定販売しています。
+          絶対に同じ内容にはならない、ありのままの、贅沢<br>
+          素材のプレミアムなお弁当を<br>
+          いのちかけて真剣にこさえてます。
+        </p>
+      </div>
+      <div class="slide-img">
+        <img src="/images/slider_view.svg" alt ="view→">
+      </div>
     </div>
   </div>
 </div>
@@ -209,6 +300,36 @@
   // 5秒ごとに切り替え
   setInterval(goNext, 5000);
 </script>
+<!-- 
+<script>
+  const slides = [
+  document.getElementById("slide1"),
+  document.getElementById("slide2"),
+  document.getElementById("slide3"),
+];
+const totalSlides = slides.length;
+let currentIndex = 0; // 現在表示中のスライドのインデックス
+
+function goNext() {
+  const currentSlide = slides[currentIndex];
+  const nextIndex = (currentIndex + 1) % totalSlides;
+  const nextSlide = slides[nextIndex];
+
+  // 次スライドの準備
+  nextSlide.classList.add("active");
+  nextSlide.classList.remove("slide-out-left");
+
+  // 現在のスライドを非表示に
+  currentSlide.classList.remove("active");
+  currentSlide.classList.add("slide-out-left");
+
+  currentIndex = nextIndex;
+}
+
+// 5秒ごとにスライドを切り替える
+setInterval(goNext, 5000);
+
+</script> -->
 
 </body>
 </html>
