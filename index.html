@@ -3,8 +3,8 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script src="/%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/sdk.js" async="" crossorigin="anonymous"></script>
-	<script async="" src="/%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/js"></script>
+	<script src="./js/sdk.js" async="" crossorigin="anonymous"></script>
+	<script async="" src="./js/js"></script>
 	<link href="/css/all.css" rel="stylesheet">
 	<script>
 	window.dataLayer = window.dataLayer || [];
@@ -20,22 +20,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="農と食なひと　たけべじ">
 	<meta property="og:description" content="兵庫県で「農と食」に向き合ってる農家夫婦のモノコト発信サイト。無農薬無化学肥料栽培のお野菜定期便や、「ホンモノごはん」を作ったり伝えたりしています。キッズから大人まで！「ハイパワーなご飯付き 農家の一日体験」も計画中。シンプルな豊かさを考えてみませんか？">
-	<!-- <meta property="og:url" content="https://home.tsuku2.jp/storeDetail.php?scd=0000212358">
-    <meta property="og:image" content="https://cms2.tsuku2.shop/pic/eyecatch/0000212358_L.jpg"> -->
+	<meta property="og:url" content="./index.html">
+    <meta property="og:image" content="./imges/takebeji_icon_L.jpg">
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="農と食なひと　たけべじ">
 	<meta property="fb:app_id" content="1581362032128406">
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:site" content="@tsuku2jp">
 	<meta name="twitter:title" content="農と食なひと　たけべじ">
 	<meta name="twitter:description" content="兵庫県で「農と食」に向き合ってる農家夫婦のモノコト発信サイト。無農薬無化学肥料栽培のお野菜定期便や、「ホンモノごはん」を作ったり伝えたりしています。キッズから大人まで！「ハイパワーなご飯付き 農家の一日体験」も計画中。シンプルな豊かさを考えてみませんか？">
-	<meta name="twitter:url" content="https://home.tsuku2.jp/storeDetail.php?scd=0000212358">
-	<meta name="twitter:image" content="https://cms2.tsuku2.shop/pic/eyecatch/0000212358_L.jpg">
+	<meta name="twitter:url" content="./index.html">
+	<meta name="twitter:image" content="./imges/takebeji_icon_L.jpg">
 	<meta name="google-site-verification" content="FdEBuBNGQaoHbB4YfQhtwNmGuDGfTNleD-vJiyYFxEo">
+
 	<!-- icon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="https://home.tsuku2.jp/apple-touch-icon.png">
-	<link rel="icon" href="https://home.tsuku2.jp/favicon.ico">
-	<link rel="manifest" href="https://home.tsuku2.jp/manifest.json">
+	<link rel="apple-touch-icon" sizes="180x180" href="./images/takebeji_icon.png">
+	<link rel="icon" href="./images/favicon.ico">
+	<link rel="manifest" href="./manifest.json">
 	<link rel="preconnect" href="https://fonts.googleapis.com/">
 	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
 </head>
@@ -71,9 +71,9 @@
             document.getElementById('mailMagazine_modal_html').innerHTML = data;
         });
     </script>
-
+	
     <!-- メイン -->
-	<main class="l-mainContainer top shop_bg-grad">
+	<main class="l-mainContainer top shop_bg-grad" style="background-image: url('images/background.svg');">
         <!-- main visual -->
         <div id="main_visual_html"></div>
         <script>
@@ -165,13 +165,22 @@
         });
     </script>
     
+	<!-- ショップ終了モーダル -->
+	<div id="nomoreShop_modal_html"></div>
+	<script>
+		fetch('./nomoreShop_modal.html')
+		.then(response => response.text())
+		.then(data => {
+			document.getElementById('nomoreShop_modal_html').innerHTML = data;
+		});
+	</script>
 
 	<div class="modal-overlay js-modal-overlay js-close-modal">
 	</div>
-	<script src="./%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/jquery-3.5.1.min.js"></script>
-	<script src="./%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/slick.1.8.1min.js"></script>
-	<script src="./%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/global.js"></script>
-	<script src="./%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/shop.js"></script>
+	<script src="./js/jquery-3.5.1.min.js"></script>
+	<script src="./js/slick.1.8.1min.js"></script>
+	<script src="./js/global.js"></script>
+	<script src="./js/shop.js"></script>
 	<script>
 	$(document).ready(function(){
 	        if($('.menu_more_pc_class').find('a').length < 1)
@@ -184,8 +193,8 @@
 	        }
 	    });
 	</script>
-	<script src="./%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/top.js"></script>
-	<script src="./%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/shop_mainvisual.js"></script>
+	<script src="./js/top.js"></script>
+	<script src="./js/shop_mainvisual.js"></script>
 	<script type="text/javascript">
 	function changeTopProductTab() {
 	            const li = $('.js-top-product .js-top-product-tab li')
@@ -338,10 +347,7 @@
 	                });
 	        });
 	</script>
-	<noscript>
-		<img src="https://home.tsuku2.jp/akam/13/pixel_59d8f2c8?a=dD0yMTcyM2Q2YzI4ZTQzNDlkZTY3NzlhNDY5MDVmZjk2NDQ4YWY5ODA2JmpzPW9mZg==" style="visibility: hidden; position: absolute; left: -999px; top: -999px;">
-	</noscript>
-	<script type="text/javascript" src="./%E8%BE%B2%E3%81%A8%E9%A3%9F%E3%81%AA%E3%81%B2%E3%81%A8%E3%80%80%E3%81%9F%E3%81%91%E3%81%B9%E3%81%98_files/Sp1Hmg"></script>
+	<script type="text/javascript" src="./js/Sp1Hmg"></script>
 </body>
 
 </html>

@@ -448,22 +448,49 @@ $(function () {
       });
     })
   });
- 
-  const onClickShowModal = ('click', (e) => {
-    var target = e.currentTarget.getAttribute('data-target-class');
-    if (target == 'registMailmag') {
-      $('.regist-mailmag--before').css('display', 'block');
-      $('.regist-mailmag--after').css('display', 'none');
-    } else if (target == 'stopMailmag') {
-      $('.stop-mailmag--before').css('display', 'block');
-      $('.stop-mailmag--after').css('display', 'none');
+
+  window.addEventListener('load', function() {
+    if (typeof jQuery === 'undefined') {
+      console.error('jQuery is not loaded');
+      return;
     }
-    $('.js-modal-' + target).fadeIn();
+  
+    // モーダルを開く処理
+    const onClickShowModal = (e) => {
+      console.log("モーダルを開く処理が実行されました");
+      var target = $(e.currentTarget).attr('data-target-class');
+      if (target == 'registMailmag') {
+        $('.regist-mailmag--before').css('display', 'block');
+        $('.regist-mailmag--after').css('display', 'none');
+      } else if (target == 'stopMailmag') {
+        $('.stop-mailmag--before').css('display', 'block');
+        $('.stop-mailmag--after').css('display', 'none');
+      } else if (target == 'nomoreECSite'){
+        $('.stop-mailmag--before').css('display', 'block');
+        $('.stop-mailmag--after').css('display', 'none');
+      }
+      // モーダルとオーバーレイを表示
+      $('.js-modal-' + target).removeClass('hidden').fadeIn();
+      $('.modal-overlay').fadeIn();  // オーバーレイを表示
+    };
+  
+    // モーダルを開くボタンのイベント設定
+    $('.js-show-merumaga-modalClass, .js-show-nomore-shop-modalClass').on('click', onClickShowModal);
+  
+    // 閉じるボタンの処理
+    $('.js-close-modal').on('click', function() {
+      console.log("閉じるボタンがクリックされました");
+      $(this).closest('.js-modal-closeTarget').addClass('hidden');
+      $('.modal-overlay').fadeOut();  // オーバーレイを非表示
+    });
+  
+    // オーバーレイクリックでもモーダルを閉じる
+    $('.modal-overlay').on('click', function() {
+      $('.js-modal-closeTarget').addClass('hidden');
+      $(this).fadeOut();
+    });
   });
-  const showModals = document.querySelectorAll('.js-show-merumaga-modalClass');
-  for (let i = 0; i < showModals.length; i++) {
-    showModals[i].addEventListener('click', onClickShowModal);
-  }
+
   // メルマガ購読開始時
   const registMailmagBtn = document.querySelector('.js-button-regist-mailmag');
   registMailmagBtn.addEventListener('click', () => {
@@ -510,6 +537,16 @@ $(function () {
       }
     });
   });
+  // 推測されるJavaScriptの処理
+  const noMoreShopBtn = document.querySelector('.js-show-nomore-shop-modalClass')
+  noMoreShopBtn.addEventListener('click', () => {
+    // data-target-classの値（registMailmag）を使用してモーダルを特定
+    const targetModal = document.querySelector('.js-show-nomore-shop');
+    
+    // hiddenクラスを削除してモーダルを表示
+    targetModal.classList.remove('hidden');
+  });
+  
 });
 /* ------------------------------------------
  * ヘッダーナビ MORE サブメニュー表示時、画面から見切れる場合にケアする
