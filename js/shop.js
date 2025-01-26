@@ -53,17 +53,17 @@ $(function () {
     }, 300);
   }
 
-  humSw.addEventListener('click', () => {
-    drawer.classList.add('show');
-  });
-  closeSw.addEventListener('click', closeDrawer);
-  drawerProductLink.forEach((el) => {
-    el.addEventListener('click', () => {
-      if (location.href.indexOf('/storeProduct.php?') != -1) {
-        closeDrawer()
-      }      
-    });
-  });
+  // humSw.addEventListener('click', () => {
+  //   drawer.classList.add('show');
+  // });
+  // closeSw.addEventListener('click', closeDrawer);
+  // drawerProductLink.forEach((el) => {
+  //   el.addEventListener('click', () => {
+  //     if (location.href.indexOf('/storeProduct.php?') != -1) {
+  //       closeDrawer()
+  //     }      
+  //   });
+  // });
   nextSw.forEach((el, i) => {
     el.addEventListener('click', () => {
       const tgt = el.closest('li').querySelector('.drawer_page')
@@ -431,7 +431,7 @@ $(function () {
     if (jqxhr) return;
     jqxhr = $.ajax({
       type: "GET",
-      url: "contents/libs/fanClubRegist.php/?scd=" + modal_shop_cd + "&funclub_action=entry",
+      url: "",
       data: {
         user_id: modal_user_id,
         storemaster_cd: modal_storemaster_cd
@@ -449,103 +449,103 @@ $(function () {
     })
   });
 
-  window.addEventListener('load', function() {
-    if (typeof jQuery === 'undefined') {
-      console.error('jQuery is not loaded');
-      return;
-    }
+  // window.addEventListener('load', function() {
+  //   if (typeof jQuery === 'undefined') {
+  //     console.error('jQuery is not loaded');
+  //     return;
+  //   }
   
-    // モーダルを開く処理
-    const onClickShowModal = (e) => {
-      console.log("モーダルを開く処理が実行されました");
-      var target = $(e.currentTarget).attr('data-target-class');
-      if (target == 'registMailmag') {
-        $('.regist-mailmag--before').css('display', 'block');
-        $('.regist-mailmag--after').css('display', 'none');
-      } else if (target == 'stopMailmag') {
-        $('.stop-mailmag--before').css('display', 'block');
-        $('.stop-mailmag--after').css('display', 'none');
-      } else if (target == 'nomoreECSite'){
-        $('.stop-mailmag--before').css('display', 'block');
-        $('.stop-mailmag--after').css('display', 'none');
-      }
-      // モーダルとオーバーレイを表示
-      $('.js-modal-' + target).removeClass('hidden').fadeIn();
-      $('.modal-overlay').fadeIn();  // オーバーレイを表示
-    };
+  //   // モーダルを開く処理
+  //   const onClickShowModal = (e) => {
+  //     console.log("モーダルを開く処理が実行されました");
+  //     var target = $(e.currentTarget).attr('data-target-class');
+  //     if (target == 'registMailmag') {
+  //       $('.regist-mailmag--before').css('display', 'block');
+  //       $('.regist-mailmag--after').css('display', 'none');
+  //     } else if (target == 'stopMailmag') {
+  //       $('.stop-mailmag--before').css('display', 'block');
+  //       $('.stop-mailmag--after').css('display', 'none');
+  //     } else if (target == 'nomoreECSite'){
+  //       $('.stop-mailmag--before').css('display', 'block');
+  //       $('.stop-mailmag--after').css('display', 'none');
+  //     }
+  //     // モーダルとオーバーレイを表示
+  //     $('.js-modal-' + target).removeClass('hidden').fadeIn();
+  //     $('.modal-overlay').fadeIn();  // オーバーレイを表示
+  //   };
   
-    // モーダルを開くボタンのイベント設定
-    $('.js-show-merumaga-modalClass, .js-show-nomore-shop-modalClass').on('click', onClickShowModal);
+  //   // モーダルを開くボタンのイベント設定
+  //   $('.js-show-merumaga-modalClass, .js-show-nomore-shop-modalClass').on('click', onClickShowModal);
   
-    // 閉じるボタンの処理
-    $('.js-close-modal').on('click', function() {
-      console.log("閉じるボタンがクリックされました");
-      $(this).closest('.js-modal-closeTarget').addClass('hidden');
-      $('.modal-overlay').fadeOut();  // オーバーレイを非表示
-    });
+  //   // 閉じるボタンの処理
+  //   $('.js-close-modal').on('click', function() {
+  //     console.log("閉じるボタンがクリックされました");
+  //     $(this).closest('.js-modal-closeTarget').addClass('hidden');
+  //     $('.modal-overlay').fadeOut();  // オーバーレイを非表示
+  //   });
   
-    // オーバーレイクリックでもモーダルを閉じる
-    $('.modal-overlay').on('click', function() {
-      $('.js-modal-closeTarget').addClass('hidden');
-      $(this).fadeOut();
-    });
-  });
+  //   // オーバーレイクリックでもモーダルを閉じる
+  //   $('.modal-overlay').on('click', function() {
+  //     $('.js-modal-closeTarget').addClass('hidden');
+  //     $(this).fadeOut();
+  //   });
+  // });
 
   // メルマガ購読開始時
-  const registMailmagBtn = document.querySelector('.js-button-regist-mailmag');
-  registMailmagBtn.addEventListener('click', () => {
-    let request = null;
-    const mailMagIconPc = document.querySelector('.header_nav_sub_mailmag');
-    const mailMagIconSp = document.querySelector('.drawer_header_mailmag');
-    // ボタン連打による二重処理防止
-    if (request) return;
-    let url = `contents/libs/registMailmag.php?scd=${mailMagShopCd}&action=regist`;
-    fetch(url, {
-      method: 'GET',
-    }).then((response) => {
-      if(response.ok) {
-        mailMagIconPc.dataset.targetClass = 'stopMailmag';
-        mailMagIconPc.classList.add('active');
-        mailMagIconSp.dataset.targetClass = 'stopMailmag';
-        mailMagIconSp.classList.add('active');
-        $('.regist-mailmag--before').fadeOut(100, function () {
-          $('.regist-mailmag--after').fadeIn();
-        });
-      }
-    });
-  });
+  // const registMailmagBtn = document.querySelector('.js-button-regist-mailmag');
+  // registMailmagBtn.addEventListener('click', () => {
+  //   let request = null;
+  //   const mailMagIconPc = document.querySelector('.header_nav_sub_mailmag');
+  //   const mailMagIconSp = document.querySelector('.drawer_header_mailmag');
+  //   // ボタン連打による二重処理防止
+  //   if (request) return;
+  //   let url = "";
+  //   fetch(url, {
+  //     method: 'GET',
+  //   }).then((response) => {
+  //     if(response.ok) {
+  //       mailMagIconPc.dataset.targetClass = 'stopMailmag';
+  //       mailMagIconPc.classList.add('active');
+  //       mailMagIconSp.dataset.targetClass = 'stopMailmag';
+  //       mailMagIconSp.classList.add('active');
+  //       $('.regist-mailmag--before').fadeOut(100, function () {
+  //         $('.regist-mailmag--after').fadeIn();
+  //       });
+  //     }
+  //   });
+  // });
   // メルマガ購読停止時
-  const stopMailmagBtn = document.querySelector('.js-button-stop-mailmag');
-  stopMailmagBtn.addEventListener('click', () => {
-    let request = null;
-    const mailMagIconPc = document.querySelector('.header_nav_sub_mailmag');
-    const mailMagIconSp = document.querySelector('.drawer_header_mailmag');
-    // ボタン連打による二重処理防止
-    if (request) return;
-    let url = `contents/libs/registMailmag.php?scd=${mailMagShopCd}&action=stop`;
-    fetch(url, {
-      method: 'GET',
-    }).then((response) => {
-      if(response.ok) {
-        mailMagIconPc.dataset.targetClass = 'registMailmag';
-        mailMagIconPc.classList.remove('active');
-        mailMagIconSp.dataset.targetClass = 'registMailmag';
-        mailMagIconSp.classList.remove('active');
-        $('.stop-mailmag--before').fadeOut(100, function () {
-          $('.stop-mailmag--after').fadeIn();
-        });
-      }
-    });
-  });
+  // const stopMailmagBtn = document.querySelector('.js-button-stop-mailmag');
+  // stopMailmagBtn.addEventListener('click', () => {
+  //   let request = null;
+  //   const mailMagIconPc = document.querySelector('.header_nav_sub_mailmag');
+  //   const mailMagIconSp = document.querySelector('.drawer_header_mailmag');
+  //   // ボタン連打による二重処理防止
+  //   if (request) return;
+  //   let url = "";
+  //   fetch(url, {
+  //     method: 'GET',
+  //   }).then((response) => {
+  //     if(response.ok) {
+  //       mailMagIconPc.dataset.targetClass = 'registMailmag';
+  //       mailMagIconPc.classList.remove('active');
+  //       mailMagIconSp.dataset.targetClass = 'registMailmag';
+  //       mailMagIconSp.classList.remove('active');
+  //       $('.stop-mailmag--before').fadeOut(100, function () {
+  //         $('.stop-mailmag--after').fadeIn();
+  //       });
+  //     }
+  //   });
+  // });
   // 推測されるJavaScriptの処理
-  const noMoreShopBtn = document.querySelector('.js-show-nomore-shop-modalClass')
-  noMoreShopBtn.addEventListener('click', () => {
-    // data-target-classの値（registMailmag）を使用してモーダルを特定
-    const targetModal = document.querySelector('.js-show-nomore-shop');
+  // const noMoreShopBtn = document.querySelector('.js-show-nomore-shop-modalClass')
+  // noMoreShopBtn.addEventListener('click', () => {
+  //   // data-target-classの値（registMailmag）を使用してモーダルを特定
+  //   const targetModal = document.querySelector('.js-show-nomore-shop');
     
-    // hiddenクラスを削除してモーダルを表示
-    targetModal.classList.remove('hidden');
-  });
+  //   // hiddenクラスを削除してモーダルを表示
+  //   targetModal.classList.remove('hidden');
+  // });
   
 });
 /* ------------------------------------------

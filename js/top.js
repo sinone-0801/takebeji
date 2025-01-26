@@ -219,7 +219,7 @@ const getItemStockWithChild = () => {
   // 在庫なしの商品がない場合は処理を終了
   if (item_cd_list.length == 0) return;
   // バリエーション商品を含めた在庫を取得するAPIを叩く
-  const url = "/../contents/libs/itemStockWithChild.php"
+  const url = ""
   fetch(url, {
     method: 'POST',
     headers: {
@@ -317,7 +317,7 @@ $(function(){
   const getSuggestList = async () => {
 
     // 商品に紐づくグロ―バルタグの一覧を取得
-    const url = "/../contents/libs/suggest.php"
+    const url = ""
     response = await fetch(url, {
       method: 'POST',
     })

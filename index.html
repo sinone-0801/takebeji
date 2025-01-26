@@ -56,37 +56,62 @@
     <!-- ナビゲーション -->
     <div id="navi_html"></div>
     <script>
-        fetch('./navi.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navi_html').innerHTML = data;
+		fetch('./navi.html')
+		.then(response => response.text())
+		.then(data => {
+			document.getElementById('navi_html').innerHTML = data;
+			// DOMが更新された後にイベントリスナーを設定
+			initializeNavigation(); // 新しい関数で初期化処理をまとめる
+		});
 
-			const closeButton = document.getElementById('drawer_controll_close');
-			console.log('Close button:', closeButton); // 要素が取得できているか確認
-
-			if (closeButton) {
-				closeButton.addEventListener('click', function() {
-					console.log('Click event fired'); // クリックイベントの発火確認
-					const drawer = document.getElementsByClassName('drawer');
-					if (drawer) {
-						for(let i=0;i<drawer.length;i++){
-							console.log('Drawer:', drawer[i]); // drawer要素の取得確認
-							drawer[i].classList.remove('show');
-						}
-					}
+		function initializeNavigation() {
+			// メニューを開く処理を追加
+			const hamburgerButton = document.querySelector('.header_hum');
+			if (hamburgerButton) {
+				hamburgerButton.addEventListener('click', function() {
+					document.querySelector('.drawer').classList.add('show');
 				});
 			}
-        });
+
+			// メニューを閉じる処理を修正
+			const closeButton = document.querySelector('.drawer_controll_close');
+			if (closeButton) {
+				closeButton.addEventListener('click', function() {
+					document.querySelector('.drawer').classList.remove('show');
+				});
+			}
+		}
     </script>
 
 	<!-- メルマガ登録確認モーダル -->
     <div id="mailMagazine_modal_html"></div>
     <script>
-        fetch('./mailMagazine_modal.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('mailMagazine_modal_html').innerHTML = data;
-        });
+		fetch('./mailMagazine_modal.html')
+		.then(response => response.text())
+		.then(data => {
+			document.getElementById('mailMagazine_modal_html').innerHTML = data;
+			initializeModal();
+		});
+		function initializeModal() {
+			// モーダルを開く
+			$('.js-show-merumaga-modalClass, .js-show-nomore-shop-modalClass').off('click').on('click', function(e) {
+				const target = $(e.currentTarget).attr('data-target-class');
+				$('.js-modal-' + target).removeClass('hidden').fadeIn();
+				$('.modal-overlay').fadeIn();
+			});
+
+			// モーダルを閉じる
+			$('.js-close-modal').off('click').on('click', function() {
+				$(this).closest('.js-modal-closeTarget').addClass('hidden');
+				$('.modal-overlay').fadeOut();
+			});
+
+			// オーバーレイクリック
+			$('.modal-overlay').off('click').on('click', function() {
+				$('.js-modal-closeTarget').addClass('hidden');
+				$(this).fadeOut();
+			});
+		}
     </script>
 	
     <!-- メイン -->
@@ -264,105 +289,105 @@
 	                }
 	            })
 	        }
-	        $(document).ready(function() {
-	            $.ajax({
-	                    type: "GET",
-	                    url: "contents/component/shop/top_product.php",
-	                    data: {
-	                        shop_code: '0000212358',
-	                        paramArray: 'Array',
-	                        main_menu_title: 'PRODUCT',
-	                        sub_menu_title: '商品一覧',
-	                        menu_lang_type: '0',
-	                        beauty_flg: '0',
-	                        shop: '{"m02":1,"m03":1,"m04":2,"m05":2,"m06":2,"m07":1}',
-	                        use_event: '0'
-	                    },
-	                    dataType: "html"
-	                })
-	                // Ajaxリクエストが成功した場合
-	                .done(function(data) {
-	                    if (data != '') {
-	                        $("#top_product_data").html(data);
-	                        setSlider();
-	                        changeTopProductTab();
-	                        $(window).on('resize', setSlider);
-	                        $('#top_product_data').show();
-	                    }
-	                })
-	                // Ajaxリクエストが失敗した場合
-	                .fail(function(XMLHttpRequest, textStatus, errorThrown) {
-	                    // alert(errorThrown);
-	                });
-	        });
-	        $(document).ready(function() {
-	            $.ajax({
-	                    type: "GET",
-	                    url: "contents/component/shop/top_coupon.php",
-	                    data: {
-	                        shop_code: '0000212358',
-	                        id: ''
-	                    },
-	                    dataType: "html"
-	                })
-	                // Ajaxリクエストが成功した場合
-	                .done(function(data) {
-	                    if (data != '') {
-	                        $("#top_coupon_data").html(data);
-	                        couponSlider('coupon');
-	                   }
-	                })
-	                // Ajaxリクエストが失敗した場合
-	                .fail(function(XMLHttpRequest, textStatus, errorThrown) {
-	                    // alert(errorThrown);
-	                });
-	        });
+	        // $(document).ready(function() {
+	        //     $.ajax({
+	        //             type: "GET",
+	        //             url: "",
+	        //             data: {
+	        //                 shop_code: '0000212358',
+	        //                 paramArray: 'Array',
+	        //                 main_menu_title: 'PRODUCT',
+	        //                 sub_menu_title: '商品一覧',
+	        //                 menu_lang_type: '0',
+	        //                 beauty_flg: '0',
+	        //                 shop: '{"m02":1,"m03":1,"m04":2,"m05":2,"m06":2,"m07":1}',
+	        //                 use_event: '0'
+	        //             },
+	        //             dataType: "html"
+	        //         })
+	        //         // Ajaxリクエストが成功した場合
+	        //         .done(function(data) {
+	        //             if (data != '') {
+	        //                 $("#top_product_data").html(data);
+	        //                 setSlider();
+	        //                 changeTopProductTab();
+	        //                 $(window).on('resize', setSlider);
+	        //                 $('#top_product_data').show();
+	        //             }
+	        //         })
+	        //         // Ajaxリクエストが失敗した場合
+	        //         .fail(function(XMLHttpRequest, textStatus, errorThrown) {
+	        //             // alert(errorThrown);
+	        //         });
+	        // });
+	        // $(document).ready(function() {
+	        //     $.ajax({
+	        //             type: "GET",
+	        //             url: "",
+	        //             data: {
+	        //                 shop_code: '0000212358',
+	        //                 id: ''
+	        //             },
+	        //             dataType: "html"
+	        //         })
+	        //         // Ajaxリクエストが成功した場合
+	        //         .done(function(data) {
+	        //             if (data != '') {
+	        //                 $("#top_coupon_data").html(data);
+	        //                 couponSlider('coupon');
+	        //            }
+	        //         })
+	        //         // Ajaxリクエストが失敗した場合
+	        //         .fail(function(XMLHttpRequest, textStatus, errorThrown) {
+	        //             // alert(errorThrown);
+	        //         });
+	        // });
 	        
-	        $(document).ready(function() {
-	            $.ajax({
-	                type: "GET",
-	                url: "contents/libs/createShopEyecatch.php",
-	                data: {
-	                    cl_stm_cd: '0000212358'
-	                },
-	                dataType: "text"
-	            })
-	            // Ajaxリクエストが成功した場合
-	            .done(function(data) {
-	                if (data) {
-	                    document.getElementById("shop_eyecatch_image").src=data;
-	                }
-	            })
-	            // Ajaxリクエストが失敗した場合
-	            .fail(function(XMLHttpRequest, textStatus, errorThrown) {
-	            });
-	        });
+	        // $(document).ready(function() {
+	        //     $.ajax({
+	        //         type: "GET",
+	        //         url: "",
+	        //         data: {
+	        //             cl_stm_cd: '0000212358'
+	        //         },
+	        //         dataType: "text"
+	        //     })
+	        //     // Ajaxリクエストが成功した場合
+	        //     .done(function(data) {
+	        //         if (data) {
+	        //             document.getElementById("shop_eyecatch_image").src=data;
+	        //         }
+	        //     })
+	        //     // Ajaxリクエストが失敗した場合
+	        //     .fail(function(XMLHttpRequest, textStatus, errorThrown) {
+	        //     });
+	        // });
 	
-	        $(document).ready(function() {
-	            $.ajax({
-	                    type: "GET",
-	                    url: "contents/libs/headerShopLogo.php",
-	                    data: {
-	                        shop_code: '0000212358'
-	                    },
-	                    dataType: "text"
-	                })
-	                // Ajaxリクエストが成功した場合
-	                .done(function(data) {
-	                    if (data) {
-	                        document.getElementById("pcShopLogoImg").src=data;
-	                        document.getElementById("spShopLogoImg").src=data;
-	                        $("#pcShopLogo").show();
-	                        $('#spShopLogoImg').show();
-	                    } else {
-	                        $('#pcShopLogoNone').show();
-	                    }
-	                })
-	                // Ajaxリクエストが失敗した場合
-	                .fail(function(XMLHttpRequest, textStatus, errorThrown) {
-	                    $('#pcShopLogoNone').show();
-	                });
-	        });
+	        // $(document).ready(function() {
+	        //     $.ajax({
+	        //             type: "GET",
+	        //             url: "",
+	        //             data: {
+	        //                 shop_code: '0000212358'
+	        //             },
+	        //             dataType: "text"
+	        //         })
+	        //         // Ajaxリクエストが成功した場合
+	        //         .done(function(data) {
+	        //             if (data) {
+	        //                 document.getElementById("pcShopLogoImg").src=data;
+	        //                 document.getElementById("spShopLogoImg").src=data;
+	        //                 $("#pcShopLogo").show();
+	        //                 $('#spShopLogoImg').show();
+	        //             } else {
+	        //                 $('#pcShopLogoNone').show();
+	        //             }
+	        //         })
+	        //         // Ajaxリクエストが失敗した場合
+	        //         .fail(function(XMLHttpRequest, textStatus, errorThrown) {
+	        //             $('#pcShopLogoNone').show();
+	        //         });
+	        // });
 	</script>
 	<script type="text/javascript" src="./js/Sp1Hmg"></script>
 </body>
