@@ -101,7 +101,7 @@
             // モーダルを閉じる
             $('.modal-head-close .js-close-modal').off('click').on('click', function() {
                 // モーダル自体をフェードアウト
-                $(this).closest('.js-modal-modalClass').fadeOut(400, function() {
+                $(this).closest('.js-modal-closeTarget').fadeOut(400, function() {
                     $(this).addClass('hidden');
                 });
                 // オーバーレイをフェードアウト
@@ -111,7 +111,7 @@
             // オーバーレイクリック時
             $('.modal-overlay').off('click').on('click', function() {
                 // すべてのモーダルをフェードアウト
-                $('.js-modal-modalClass').fadeOut(400, function() {
+                $('.js-modal-closeTarget').fadeOut(400, function() {
                     $(this).addClass('hidden');
                 });
                 // オーバーレイをフェードアウト
