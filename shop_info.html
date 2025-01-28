@@ -92,14 +92,14 @@
 		});
         function initializeModal() {
             // モーダルを開く
-            $('.js-show-modalClass .js-show-merumaga-modalClass, .js-show-nomore-shop-modalClass').off('click').on('click', function(e) {
+            $('.js-show-modalClass .js-show-merumaga-modalClass .js-show-nomore-shop-modalClass').off('click').on('click', function(e) {
                 const target = $(e.currentTarget).attr('data-target-class');
                 $('.js-modal-' + target).removeClass('hidden').fadeIn();
                 $('.modal-overlay').fadeIn();
             });
 
             // モーダルを閉じる
-            $('.js-close-modal').off('click').on('click', function() {
+            $('.modal-head-close .js-close-modal').off('click').on('click', function() {
                 // モーダル自体をフェードアウト
                 $(this).closest('.js-modal-closeTarget').fadeOut(400, function() {
                     $(this).addClass('hidden');
