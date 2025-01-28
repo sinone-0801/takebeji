@@ -99,28 +99,31 @@
             });
 
             // モーダルを閉じる
-            // クラスを持つ親要素全体をクリック対象にする
             $('.js-close-modal').off('click').on('click', function() {
-                // 最も近い.js-modal-closeTargetを見つけて閉じる
-                $(this).closest('.js-modal-closeTarget').fadeOut(400, function() {
-                    $(this).addClass('hidden');
+                // すべてのモーダルを閉じる
+                $('.js-modal-closeTarget').each(function() {
+                    $(this).fadeOut(400, function() {
+                        $(this).addClass('hidden');
+                    });
                 });
                 // オーバーレイをフェードアウト
                 $('.modal-overlay').fadeOut();
             });
 
-            // オーバーレイクリック時
+            // オーバーレイクリック時も同様の処理
             $('.modal-overlay').off('click').on('click', function() {
-                // すべてのモーダルをフェードアウト
-                $('.js-modal-closeTarget').fadeOut(400, function() {
-                    $(this).addClass('hidden');
+                // すべてのモーダルを閉じる
+                $('.js-modal-closeTarget').each(function() {
+                    $(this).fadeOut(400, function() {
+                        $(this).addClass('hidden');
+                    });
                 });
                 // オーバーレイをフェードアウト
                 $(this).fadeOut();
             });
 
             // デバッグ用：要素が見つかっているか確認
-            console.log('Close buttons found:', $('.modal-aboutFanclub-close').length);
+            console.log('Close buttons found:', $('.js-close-modal').length);
             console.log('Modal targets found:', $('.js-modal-closeTarget').length);
         }
     </script>
