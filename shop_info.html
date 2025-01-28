@@ -100,7 +100,7 @@
 
             // モーダルを閉じる
             // クラスを持つ親要素全体をクリック対象にする
-            $('.js-modal-close').off('click').on('click', function() {
+            $('.js-close-modal').off('click').on('click', function() {
                 // 最も近い.js-modal-closeTargetを見つけて閉じる
                 $(this).closest('.js-modal-closeTarget').fadeOut(400, function() {
                     $(this).addClass('hidden');
