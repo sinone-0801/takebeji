@@ -92,14 +92,16 @@
 		});
         function initializeModal() {
             // モーダルを開く
-            $('.js-show-modalClass .js-show-merumaga-modalClass .js-show-nomore-shop-modalClass').off('click').on('click', function(e) {
+            // 複数のクラスを持つ要素を個別に選択
+            $('.js-show-modalClass, .js-show-merumaga-modalClass, .js-show-nomore-shop-modalClass').off('click').on('click', function(e) {
                 const target = $(e.currentTarget).attr('data-target-class');
                 $('.js-modal-' + target).removeClass('hidden').fadeIn();
                 $('.modal-overlay').fadeIn();
             });
 
             // モーダルを閉じる
-            $('.modal-head-close .js-close-modal').off('click').on('click', function() {
+            // 複数のクラスを個別に選択
+            $('.modal-head-close, .js-close-modal').off('click').on('click', function() {
                 // モーダル自体をフェードアウト
                 $(this).closest('.js-modal-closeTarget').fadeOut(400, function() {
                     $(this).addClass('hidden');
@@ -117,6 +119,9 @@
                 // オーバーレイをフェードアウト
                 $(this).fadeOut();
             });
+
+            // デバッグ用：セレクターが正しく要素を取得できているか確認
+            console.log('Close buttons found:', $('.modal-head-close, .js-close-modal').length);
         }
     </script>
 
