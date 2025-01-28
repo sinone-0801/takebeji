@@ -94,22 +94,47 @@
 		});
 		function initializeModal() {
 			// モーダルを開く
-			$('.js-show-merumaga-modalClass, .js-show-nomore-shop-modalClass').off('click').on('click', function(e) {
+			$('.js-show-modalClass, .js-show-merumaga-modalClass, .js-show-nomore-shop-modalClass').off('click').on('click', function(e) {
 				const target = $(e.currentTarget).attr('data-target-class');
-				$('.js-modal-' + target).removeClass('hidden').fadeIn();
-				$('.modal-overlay').fadeIn();
+				// display: block で表示
+				$('.js-modal-' + target)
+					.removeClass('hidden')
+					.css('display', 'block');
+				$('.modal-overlay').css('display', 'block');
 			});
 
 			// モーダルを閉じる
 			$('.js-close-modal').off('click').on('click', function() {
-				$(this).closest('.js-modal-closeTarget').addClass('hidden');
-				$('.modal-overlay').fadeOut();
+				// すべてのモーダルを非表示
+				$('.js-modal-closeTarget').each(function() {
+					$(this)
+						.addClass('hidden')
+						.css('display', 'none');
+				});
+				// オーバーレイを非表示
+				$('.modal-overlay').css('display', 'none');
 			});
 
-			// オーバーレイクリック
+			// オーバーレイクリック時も同様の処理
 			$('.modal-overlay').off('click').on('click', function() {
-				$('.js-modal-closeTarget').addClass('hidden');
-				$(this).fadeOut();
+				// すべてのモーダルを非表示
+				$('.js-modal-closeTarget').each(function() {
+					$(this)
+						.addClass('hidden')
+						.css('display', 'none');
+				});
+				// オーバーレイを非表示
+				$(this).css('display', 'none');
+			});
+
+			// デバッグ用：要素が見つかっているか確認
+			console.log('Close buttons found:', $('.js-close-modal').length);
+			console.log('Modal targets found:', $('.js-modal-closeTarget').length);
+			
+			// 初期状態の確認（デバッグ用）
+			console.log('Initial modal display states:');
+			$('.js-modal-closeTarget').each(function() {
+				console.log($(this).attr('class'), 'display:', $(this).css('display'));
 			});
 		}
     </script>
@@ -124,22 +149,47 @@
 		});
 		function initializeModal() {
 			// モーダルを開く
-			$('.js-show-merumaga-modalClass, .js-show-nomore-shop-modalClass').off('click').on('click', function(e) {
+			$('.js-show-modalClass, .js-show-merumaga-modalClass, .js-show-nomore-shop-modalClass').off('click').on('click', function(e) {
 				const target = $(e.currentTarget).attr('data-target-class');
-				$('.js-modal-' + target).removeClass('hidden').fadeIn();
-				$('.modal-overlay').fadeIn();
+				// display: block で表示
+				$('.js-modal-' + target)
+					.removeClass('hidden')
+					.css('display', 'block');
+				$('.modal-overlay').css('display', 'block');
 			});
 
 			// モーダルを閉じる
 			$('.js-close-modal').off('click').on('click', function() {
-				$(this).closest('.js-modal-closeTarget').addClass('hidden');
-				$('.modal-overlay').fadeOut();
+				// すべてのモーダルを非表示
+				$('.js-modal-closeTarget').each(function() {
+					$(this)
+						.addClass('hidden')
+						.css('display', 'none');
+				});
+				// オーバーレイを非表示
+				$('.modal-overlay').css('display', 'none');
 			});
 
-			// オーバーレイクリック
+			// オーバーレイクリック時も同様の処理
 			$('.modal-overlay').off('click').on('click', function() {
-				$('.js-modal-closeTarget').addClass('hidden');
-				$(this).fadeOut();
+				// すべてのモーダルを非表示
+				$('.js-modal-closeTarget').each(function() {
+					$(this)
+						.addClass('hidden')
+						.css('display', 'none');
+				});
+				// オーバーレイを非表示
+				$(this).css('display', 'none');
+			});
+
+			// デバッグ用：要素が見つかっているか確認
+			console.log('Close buttons found:', $('.js-close-modal').length);
+			console.log('Modal targets found:', $('.js-modal-closeTarget').length);
+			
+			// 初期状態の確認（デバッグ用）
+			console.log('Initial modal display states:');
+			$('.js-modal-closeTarget').each(function() {
+				console.log($(this).attr('class'), 'display:', $(this).css('display'));
 			});
 		}
     </script>

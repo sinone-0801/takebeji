@@ -111,6 +111,36 @@
 		}
     </script>
 
+    <div id="funclub_html"></div>
+    <script>
+        fetch('./funclub.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('funclub_html').innerHTML = data;
+            setTimeout(initializeModal, 3000);
+        });
+        function initializeModal() {
+            // モーダルを開く
+            $('.js-show-merumaga-modalClass, .js-show-nomore-shop-modalClass').off('click').on('click', function(e) {
+                const target = $(e.currentTarget).attr('data-target-class');
+                $('.js-modal-' + target).removeClass('hidden').fadeIn();
+                $('.modal-overlay').fadeIn();
+            });
+
+            // モーダルを閉じる
+            $('.js-close-modal').off('click').on('click', function() {
+                $(this).closest('.js-modal-closeTarget').addClass('hidden');
+                $('.modal-overlay').fadeOut();
+            });
+
+            // オーバーレイクリック
+            $('.modal-overlay').off('click').on('click', function() {
+                $('.js-modal-closeTarget').addClass('hidden');
+                $(this).fadeOut();
+            });
+        }
+    </script>
+
 
     <!-- TODO: 一旦フリーページの時だけ表示できるようにする -->
     <main class="l-mainContainer news shop_bg-grad" style="background-image: url('images/background.svg');">
@@ -202,15 +232,6 @@
         .then(response => response.text())
         .then(data => {
             document.getElementById('footer_html').innerHTML = data;
-        });
-    </script>
-
-    <div id="funclub_html"></div>
-    <script>
-        fetch('./funclub.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('funclub_html').innerHTML = data;
         });
     </script>
     
