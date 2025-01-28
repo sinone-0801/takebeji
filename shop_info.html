@@ -92,7 +92,6 @@
 		});
         function initializeModal() {
             // モーダルを開く
-            // 複数のクラスを持つ要素を個別に選択
             $('.js-show-modalClass, .js-show-merumaga-modalClass, .js-show-nomore-shop-modalClass').off('click').on('click', function(e) {
                 const target = $(e.currentTarget).attr('data-target-class');
                 $('.js-modal-' + target).removeClass('hidden').fadeIn();
@@ -100,9 +99,9 @@
             });
 
             // モーダルを閉じる
-            // 複数のクラスを個別に選択
-            $('.modal-head-close, .js-close-modal').off('click').on('click', function() {
-                // モーダル自体をフェードアウト
+            // クラスを持つ親要素全体をクリック対象にする
+            $('.modal-aboutFanclub-close').off('click').on('click', function() {
+                // 最も近い.js-modal-closeTargetを見つけて閉じる
                 $(this).closest('.js-modal-closeTarget').fadeOut(400, function() {
                     $(this).addClass('hidden');
                 });
@@ -120,8 +119,9 @@
                 $(this).fadeOut();
             });
 
-            // デバッグ用：セレクターが正しく要素を取得できているか確認
-            console.log('Close buttons found:', $('.modal-head-close, .js-close-modal').length);
+            // デバッグ用：要素が見つかっているか確認
+            console.log('Close buttons found:', $('.modal-aboutFanclub-close').length);
+            console.log('Modal targets found:', $('.js-modal-closeTarget').length);
         }
     </script>
 
