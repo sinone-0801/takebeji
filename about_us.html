@@ -78,7 +78,7 @@
 		.then(data => {
 			document.getElementById('navi_html').innerHTML = data;
 			// DOMが更新された後にイベントリスナーを設定
-			initializeNavigation(); // 新しい関数で初期化処理をまとめる
+			setTimeout(initializeNavigation, 3000);
 		});
 
 		function initializeNavigation() {
@@ -107,7 +107,7 @@
 		.then(response => response.text())
 		.then(data => {
 			document.getElementById('mailMagazine_modal_html').innerHTML = data;
-			initializeModal();
+			setTimeout(initializeModal, 3000);
 		});
 		function initializeModal() {
 			// モーダルを開く
