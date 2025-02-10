@@ -54,9 +54,9 @@
     /* === スライド右下のテキストボックス === */
     .slide-textbox {
       position: absolute;
-      right: 20px;
-      width: 40%;
-      height: 60%;         
+      width: 692px;
+      min-height: 60%;
+      height: auto;
       background: rgba(56, 59, 61, 0.3);
       padding: 50px;
       font-size: 18px;
@@ -65,7 +65,9 @@
       line-height: 1.6; 
       /* 公式 */
       font-family: "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+      right: 0;
     }
+
     .slide-textbox strong {
       font-size: 30px;
       padding-bottom: 30px;
@@ -104,13 +106,13 @@
 
     .slide-textbox {
       /* height: 400px; */
-      position: absolute; /* 絶対配置で自由に移動可能 */
+      position: absolute;
       right: 0; /* 右端に配置 */
       bottom: -100px; /* スライドの下にはみ出す */
       z-index: 2; /* テキストを前面に表示 */
 
       /* 公式 */
-      width: calc(50vw + 22px);
+      width: 768px;
     }
 
     /*  */
@@ -135,7 +137,6 @@
       z-index: 1;
     }
 
-    
     .slide.slide-out-left {
       opacity: 0;
       transform: translateX(-100%); 
@@ -157,6 +158,8 @@
 
     .slide-img {
       flex: 1; /* 横幅を全体の1割に設定 */
+      position: absolute;
+      right: 10%;
       display: flex; /* 子要素（画像）の配置を制御 */
       align-items: flex-end; /* 画像を親要素の下端に揃える */
       justify-content: center; /* 画像を中央揃えにする */
@@ -173,31 +176,46 @@
 
     /* slide1専用 */
     #slide1 .slide-textbox {
-      height: 50%;
-    }
-
-    #slide1 .slide-textbox {
-      margin: 40px;
+      margin: 0px;
     }
 
     /* slide2専用 */
     #slide2 .slide-textbox {
-      height: 50%;
-    }
-
-    #slide2 .slide-textbox {
-      margin: 40px;
+      margin: 0px;
     }
 
     /* slide3専用 */
     #slide3 .slide-textbox {
-      height: 60%;
+      margin: 0px;
     }
 
-    #slide3 .slide-textbox {
-      margin: 40px;
+    @media (max-width: 1536px) {
+      .slide-textbox {
+        width: 720px;
+        right: 0;  /* 右端に固定 */
+      }
     }
 
+    @media (max-width: 768px) {
+    .slide-textbox {
+      width: 540px;
+      right: 0;  /* 右端に固定 */
+      }
+    }
+
+    @media (max-width: 600px) {
+    .slide-textbox {
+      width: 432px;
+      right: 0;  /* 右端に固定 */
+      }
+    }
+
+    @media (max-width: 480px) {
+    .slide-textbox {
+      width: 90%;
+      right: 0;  /* 右端に固定 */
+      }
+    }
 
   </style>
 </head>
@@ -295,36 +313,6 @@
   // 5秒ごとに切り替え
   setInterval(goNext, 5000);
 </script>
-<!-- 
-<script>
-  const slides = [
-  document.getElementById("slide1"),
-  document.getElementById("slide2"),
-  document.getElementById("slide3"),
-];
-const totalSlides = slides.length;
-let currentIndex = 0; // 現在表示中のスライドのインデックス
-
-function goNext() {
-  const currentSlide = slides[currentIndex];
-  const nextIndex = (currentIndex + 1) % totalSlides;
-  const nextSlide = slides[nextIndex];
-
-  // 次スライドの準備
-  nextSlide.classList.add("active");
-  nextSlide.classList.remove("slide-out-left");
-
-  // 現在のスライドを非表示に
-  currentSlide.classList.remove("active");
-  currentSlide.classList.add("slide-out-left");
-
-  currentIndex = nextIndex;
-}
-
-// 5秒ごとにスライドを切り替える
-setInterval(goNext, 5000);
-
-</script> -->
 
 </body>
 </html>
